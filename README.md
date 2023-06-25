@@ -3,7 +3,8 @@
     <li>Dmenu</li>    
     <li>DwmBlocks</li>
     <li>Nerd Font</li>
-    <li>ST</li> 
+    <li>ST</li>
+    <li>LSD</li>
     <li>Neovim</li>
     <li>Pulse Audio</li>
     <li>Git</li> 
