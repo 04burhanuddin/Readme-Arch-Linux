@@ -1,10 +1,11 @@
 # **SETUP ARCH INUX**
 
-**Warning**: Don’t blindly use my settings unless you know what that entails. Use at your own risk!
+**Warning**: Don't blindly use configurations on dwm, st, dmenu and dwmblocks, unless you know what they require. Use at your own risk!
 
 ## Table Of Contents
 
 - Install Arch Linux
+- Install Github-CLI
 - Install Editor
 - Install Window Manager
 - Install Picom
@@ -23,14 +24,121 @@
 - Install Visual Studio Code
 - Configure Input & Output Audio
 - Manage Font
-- Cara Screenschoot
+- Cara Screenshoot
 
-## Install Arch Linux
+## **Install Arch Linux**
 
 - [Dwonload Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
 - [Balena Eatcher](https://etcher.balena.io/) - Creating bootable
+- Sebelum lanjut instalasi pastikan kamu memiliki koneksi internet yang cukup stabil. **wajib konek ke internet**
 
-Silahkan install sesuai dengan kebutuhan anda, tutorial ini untuk instalasi full, tidak dual boot jika mau dual boot silahkan carai cara instalasi di google atau youtube.
+**PANDUAN INSTALASI:**
+
+- Masuk ke menu boot seperti biasanya, pada boot option pilih usb penginstalan tekan enter
+- Next pilih menu `Arch Linux Install Medium...` dan tunggu sampai masuk ke `tty1`
+- Setelah masuk ke tty1 silahkan konek ke `wifi` dengan cara berikut ini:
+
+    ```shell
+    # ketikkan perintah ini pada terminal tty1 dan nanti masuk ke mode iwctl
+    iwctl
+
+    # untuk mendapatkan device list contoh wlan0
+    device list
+
+    # menampilkan semua list wifi yang tersedia
+    station wlan0 get-networks
+    
+    # konek ke wifi
+    station wlan0 connect ENTER_SSID
+    
+    # atau
+    iwctl --passphrase=PASSPHRASE station wlan0 connect SSID
+
+    # exit iwctl
+    CTRL + D / exit
+    ```
+
+- Setelah itu uji coba koneksi dengan cara
+
+    ```shell
+    ping google.com
+    # exit CTRL + C
+    ping google.com -c5
+    ```
+
+- Lakukan update dan install archinstall, archlinux-keyring
+
+    ```shell
+    pacman -Syu archinstall archlinux-keyring
+    ```
+
+- Setelah semua update dan instalasi selesai tinggal install menggunakan perintah
+
+    ```shell
+    archinstall
+    ```
+
+    > tunggu sampai masuk ke menu instalasi
+
+    **Konfigurasi Instalasi**
+  - Arch language (default English) tidak perlu di ubah
+  - Keyboar layout US (skip tidak perlu di ubah)
+  - Mirror region bebas mau di atur atau tidak (saran tidak usah)
+  - Locale language (skip tidak perlu di ubah en_US default)
+  - Locale encoding (skip tidak perlu di ubah utf-8 default)
+  - Drive(s)
+    > Pemilihan lokasi instalasi pastikan kamu memilih hardrive/ssd jangan pilih flas
+    - Tab to select
+  - Disk layout
+    > Note: instalasi full jadi pilih
+    - wipe all selected...
+    - pilih ext4 untuk filesystem
+  - Bootloader (skip saja)
+  - Swap (skip default ttrue)
+  - Hostname (atur sesui ke inginan)
+  - Root Passwor (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh or
+  - User account (silahkan tambahkan user baru, user dan paddword jangan sampai lupa)
+  - Profile (atur Pilih xorg: install a minimal ... dan untuk `graphics driver` select all
+  - Audio (pilih `pipewire`)
+  - Kernals (skip saja default `linux`)
+  - Addtional package (skip saja biar tidak lama saat proses instalasi)
+  - Network configuration (pilih Use network manager....)
+  - Timezone (disesuaikan saja, saya menggunakan asia/jakarta)
+  - Automatic time sync (skip default true)
+  - Optional repsository (skip)
+  - **Terakhir pilih install** and enter continue
+- Tunggu sampai selesai dan seteleh itu reboot san masuk kemabali login dengan user yang telah dibuat.
+- Test koneksi internet apakah masih terhubung dengan cara lakukan `ping google.com`
+- Jika tidak konek gunakan cara ini untuk konek kw `wifi` terlebih dahulu
+
+    ```shell
+    # kamu bisa mempelajari dulu nmcli ini apa sih?
+    nmcli
+
+    # mendapatkan list wifi
+    nmcli dev wifi list
+    
+    # konek ke wifi
+    sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
+    # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
+    # melihat koneksi wifi
+    
+    nmcli connection show
+    # uji coba dengan test ping ke google.com -c5
+    
+    ping google.com -c5
+    ```
+
+## Install Github-CLI
+
+```shell
+sudo pacman -S git github-cli
+
+# silahkan login dengan akun anda, dengan cara ketik token manual, tidak ada cara lain selain ini, agar bisa clone repository github.
+gh auth login
+# pilih github.com
+# jika tidak punya token buat dulu di pengaturan akun github settings -> developer settings -> personal acces token -> token classic, silahkan di centang semau permission yang dibutuhkan (centang semua saja).
+```
 
 ## Install Editor
 
@@ -51,7 +159,7 @@ Sebelum mendownload semua resource pastikan sudah membuat directory untuk menamp
 ```shell
 mkdir -p .local/src
 
-# jadi nanri isi dari directory src ini adalah ada dwm, st, dmenu dan dwmblocks
+# jadi isi dari directory src ini adalah ada dwm, st, dmenu dan dwmblocks
 # ikuti langkah di bawah untuk menginstall
 ```
 
@@ -503,7 +611,7 @@ sudo pacman -S lxappearcnce-gtk3
 
 Kemudian buka `lxappearcnce` untuk menagatur font pastikan kamu sudah menambahakan font di `.local/share/fonts/` ikuti laing di atas untuk menginstall font yang lainnya
 
-## Cara Screenschoot
+## Cara Screenshoot
 
 Sebenarnya banyak opsi yang bisa digunkan untuk mengambil tangkapan layar namu disini saya menggunakan `maim` dan sekaligus install package sxhkd untuk mengatur key binddings untuk melakukan screenshoot.
 
@@ -526,3 +634,9 @@ sxhkd &
 # dan tambahkan sxhkd & pada file .xinitrc sebelum exac dwm
 # screenshoot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
 ```
+
+## Contact Me
+
+> Jika butuh bantuan 😂
+
+- [Discord](https://discordapp.com/users/04burhanuddin) - 04burhanuddin
