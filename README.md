@@ -30,8 +30,11 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Install Bluetooth
 - Manage Font
 - Set Walpaper
+- Install Neofetch
 - Setup Neovim
 - Cara Screenshoot
+- Meggunakan SSH key passphrases
+- Others
 
 ## **Install Arch Linux**
 
@@ -303,6 +306,8 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZS
 # copy dan paste code do bawah ini kedalam plugins menjadi seperti ini
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 ```
+
+Baca juga [https://github.com/romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 > Kamu bisa explore lagi plugins yang lainnya.
 
@@ -727,11 +732,46 @@ sxhkd &
 # screenshoot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
 ```
 
-## Others
+## Mneggunakan SSH Key untuk Github
 
-- Saran saya sering-saering baca wiki arch linux karena di sana sudah lengkap banget untuk dokumetasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
-- Jangan takut untuk explore lebih dalam lagi tentang Arch Linux, tapi ingat hati-hati karena bisa beresiko fatal jika kebanyakan explore package, gunakan sesuai kebutuhan saja, jangan sampai memberatkan sistem kamu sendiri
-- Modifikasi key binddings kamu sesuai ke inginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
+Jadi sebelumnya menggunaakan github-cli dan saya lebih suka menggunakan ssh key berikut ini ada cara settingnya. sebelumnya remove dulu `sudo pacman -Rsuc github-cli` karena kita tidak menggunakan nya lagi
+> [referensi here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+```shell
+cd ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "contoh@gmail.com"
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/dev/.ssh/id_rsa): YOUR_ID
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in ....
+Your public key has been saved in ....pub
+The key fingerprint is:
+SHA256:SJ6tYaXowqW0CB..............
+The key's randomart image is:
++---[RSA 4096]----+
+|==o.o. .. .      |
+|B ++o..  . .     |
+|o+.=o.. .   .    |
+|.oooo+ *   .     |
+|. +.o B S   o   E|
+|.+ = . o   . . +.|
+|. = . .       o =|
+|   .          .o+|
+|             ...o|
++----[SHA256]-----+
+
+cat ~/.ssh/YOUR_ID.pub
+# copy semua dan simpan ke ssh keys github settings -> SSH and GPG Keys -> new ssh
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/YOUR_ID HERE
+
+# pastikan sudah sukses seperti ini
+ssh -T git@github.com
+Hi ....! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
 ## Install Neofetch
 
@@ -746,6 +786,12 @@ Run `neofetch` pada terminal dan foto kemudian upload di sosmed kamu dengan capt
 ## Setup Neovim
 
 [Tutorial Neovim](https://www.youtube.com/watch?v=vdn_pKJUda8&t=2363s) - Sangat rekomended implementasi sesuai kebutuhan saja.
+
+## Others
+
+- Saran saya sering-saering baca wiki arch linux karena di sana sudah lengkap banget untuk dokumetasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
+- Jangan takut untuk explore lebih dalam lagi tentang Arch Linux, tapi ingat hati-hati karena bisa beresiko fatal jika kebanyakan explore package, gunakan sesuai kebutuhan saja, jangan sampai memberatkan sistem kamu sendiri
+- Modifikasi key binddings kamu sesuai ke inginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
 
 ## Butuh Bantuan 😂
 
