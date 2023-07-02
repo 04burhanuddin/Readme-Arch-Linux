@@ -1,6 +1,8 @@
-# **SETUP ARCH INUX**
+# **SETUP ARCH LINUX**
 
-**Warning**: Don't blindly use configurations on dwm, st, dmenu and dwmblocks, unless you know what they require. Use at your own risk!
+Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
+
+**Warning**: Don't blindly use configurations on dwm, st, dmenu and dwmblocks, unless you know what they require. Use at your own risk!.
 
 ## Table Of Contents
 
@@ -8,9 +10,11 @@
 - Install Github-CLI
 - Install Editor
 - Install Window Manager
+- AUR Helper
+- Install ZSH
+- Install Browser
 - Install Picom
 - Touchpad Error
-- AUR Helper
 - Install Firewall
 - Install Apache
 - Install Mysql
@@ -23,10 +27,15 @@
 - Install Flutter
 - Install Visual Studio Code
 - Configure Input & Output Audio
+- Install Bluetooth
 - Manage Font
+- Set Walpaper
+- Setup Neovim
 - Cara Screenshoot
 
 ## **Install Arch Linux**
+
+> **You can try installing on VirtualBox**
 
 - [Dwonload Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
 - [Balena Eatcher](https://etcher.balena.io/) - Creating bootable
@@ -250,6 +259,72 @@ exec dwm
 
 **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
 
+## AUR Helper
+
+Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih rekomendasikan untuk menggunakan paru selengkapanya baca [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
+
+```shell
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+```
+
+## Install ZSH
+
+```shell
+sudo pacman -S zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# jika belum punya curl 
+sudo pacman -S curl
+
+# stelah itu restart
+```
+
+Install plugin ZSH
+
+```shell
+# untuk memasang clone smua pligun ini
+# autosuggesions plugin
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+# zsh-syntax-highlighting plugin
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+# zsh-fast-syntax-highlighting plugin
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+
+#zsh-autocomplete plugin
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+# implementasi
+# Open ~/.zshrc
+# cari bagian plugins=(git)
+# copy dan paste code do bawah ini kedalam plugins menjadi seperti ini
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+```
+
+> Kamu bisa explore lagi plugins yang lainnya.
+
+## Install Browser
+
+Bebas saja mau pake browser apa ada `qutebrowser`, `Brave`, `Google Chrome`, `Firefox`, `Microsoft Edge`, `surf` dll
+
+```shell
+sudo pacman -S qutebrowser
+sudo pacman -S firefox
+
+# yang lainnya bisa di install menggunakan aur helper
+# atau bisa dengan tanpa aur helper dengan cara clone dari aur package
+paru -S google-chrome
+paru -S microsoft-edge-stable-bin
+paru -S brave-bin
+
+# surf dapat kamu lihat pada https://surf.suckless.org/
+```
+
+> Jangan di install semua, sesuai kebutuhan saja.
+
 ## Install Picom
 
 Jadai DWM tidak menyediakan compositing maka dari itu akan aneh rasanya seperti patah-patah dll, dan `picom` adalah solusi yang paling tepat untuk mengatasi window manager yang tidak menyediakan compositor. baca lengkap [https://github.com/yshui/picom/wiki/](https://github.com/yshui/picom/wiki/) or [https://wiki.archlinux.org/title/picom](https://wiki.archlinux.org/title/picom)
@@ -286,16 +361,6 @@ EndSection
 ```
 
 **Cara lain** gunakan Touchpad Synaptics [https://wiki.archlinux.org/title/Touchpad_Synaptics](https://wiki.archlinux.org/title/Touchpad_Synaptics)
-
-## AUR Helper
-
-Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih rekomendasikan untuk menggunakan paru selengkapanya baca [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
-
-```shell
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-```
 
 ## Install Firewall
 
@@ -557,6 +622,18 @@ sudo pacman -S pavucontrol
 
 Jika sudah tinggal buka pavucontrol
 
+## Install Bluetooth
+
+Baca lengkap [https://wiki.archlinux.org/title/bluetooth](https://wiki.archlinux.org/title/bluetooth)
+
+```shell
+sudo pacman -S bluez bluez-utils
+
+# manage bluetooth
+systemctl enable bluetooth.service
+systemctl start bluetooth.service
+```
+
 ## Manage Font
 
 [https://wiki.archlinux.org/title/fonts](https://wiki.archlinux.org/title/fonts) - Panduan menambahakna font yang lainnya
@@ -611,9 +688,23 @@ sudo pacman -S lxappearcnce-gtk3
 
 Kemudian buka `lxappearcnce` untuk menagatur font pastikan kamu sudah menambahakan font di `.local/share/fonts/` ikuti laing di atas untuk menginstall font yang lainnya
 
+## Set Walpaper
+
+Baca selengkapnya [https://wiki.archlinux.org/title/feh](https://wiki.archlinux.org/title/feh)
+
+```shell
+Sudo pacman -S feh
+
+# contoh mengatur walpaper click link di atas untuk detail
+feh --bg-scale /path/to/image.file
+
+# tambahkan baris ini pada .xinitrc
+~/.fehbg &
+```
+
 ## Cara Screenshoot
 
-Sebenarnya banyak opsi yang bisa digunkan untuk mengambil tangkapan layar namu disini saya menggunakan `maim` dan sekaligus install package sxhkd untuk mengatur key binddings untuk melakukan screenshoot.
+Sebenarnya banyak opsi yang bisa digunkan untuk mengambil tangkapan layar namu disini saya menggunakan `maim` dan sekaligus install package sxhkd untuk mengatur key binddings untuk melakukan screenshoot. Baca Selengkapnya [https://man.archlinux.org/man/maim.1.en](https://man.archlinux.org/man/maim.1.en) - untuk screenshoot opsi lainnya.
 
 ```shell
 sudo pacman -S maim sxhkd
@@ -627,16 +718,35 @@ sudo nvim .config/sxhkd/sxhkdrc
 
 # copy dan paste code ini pada file sxhkdrc, modifikasi sesuai kebutuhan
 super + shift + p
-    maim ~/pictures/screenshoot/$(date +%s).png
+    maim -s ~/pictures/screenshoot/$(date +%s).png
 
+# -s adalah select jika tidak mau langsung saja tanpa -s click link di atas untuk opsi lainnya
 # save dan jalankan 
 sxhkd &
 # dan tambahkan sxhkd & pada file .xinitrc sebelum exac dwm
 # screenshoot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
 ```
 
-## Contact Me
+## Others
 
-> Jika butuh bantuan 😂
+- Saran saya sering-saering baca wiki arch linux karena di sana sudah lengkap banget untuk dokumetasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
+- Jangan takut untuk explore lebih dalam lagi tentang Arch Linux, tapi ingat hati-hati karena bisa beresiko fatal jika kebanyakan explore package, gunakan sesuai kebutuhan saja, jangan sampai memberatkan sistem kamu sendiri
+- Modifikasi key binddings kamu sesuai ke inginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
 
-- [Discord](https://discordapp.com/users/04burhanuddin) - 04burhanuddin
+## Install Neofetch
+
+[https://github.com/Chick2D/neofetch-themes](https://github.com/Chick2D/neofetch-themes) - Thme Neofetch
+
+```shell
+sudo pacman -S neofetch
+```
+
+Run `neofetch` pada terminal dan foto kemudian upload di sosmed kamu dengan caption `I USE ARCH BTW` 🤣
+
+## Setup Neovim
+
+[Tutorial Neovim](https://www.youtube.com/watch?v=vdn_pKJUda8&t=2363s) - Sangat rekomended implementasi sesuai kebutuhan saja.
+
+## Butuh Bantuan 😂
+
+[Discord](https://discordapp.com/users/04burhanuddin) - Contact
