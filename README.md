@@ -94,9 +94,9 @@
     - wipe all selected...
     - pilih ext4 untuk filesystem
   - Bootloader (skip saja)
-  - Swap (skip default ttrue)
+  - Swap (skip default true)
   - Hostname (atur sesui ke inginan)
-  - Root Passwor (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh or
+  - Root Passwor (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh orang
   - User account (silahkan tambahkan user baru, user dan paddword jangan sampai lupa)
   - Profile (atur Pilih xorg: install a minimal ... dan untuk `graphics driver` select all
   - Audio (pilih `pipewire`)
@@ -107,7 +107,7 @@
   - Automatic time sync (skip default true)
   - Optional repsository (skip)
   - **Terakhir pilih install** and enter continue
-- Tunggu sampai selesai dan seteleh itu reboot san masuk kemabali login dengan user yang telah dibuat.
+- Tunggu sampai selesai dan seteleh itu reboot dan masuk kemabali login dengan user yang telah dibuat.
 - Test koneksi internet apakah masih terhubung dengan cara lakukan `ping google.com`
 - Jika tidak konek gunakan cara ini untuk konek kw `wifi` terlebih dahulu
 
