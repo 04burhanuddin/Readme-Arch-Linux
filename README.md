@@ -7,7 +7,10 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 ## Table Of Contents
 
 - Install Arch Linux
-- Install GIT Github-CLI & SSH
+- Install GIT
+- Mount Smartphone
+- Mengguanakn Github-CLI
+- Menggunakan SSH Keys
 - Install Editor
 - Install Window Manager
 - AUR Helper
@@ -341,7 +344,17 @@ dwmblocks &
 exec dwm
 ```
 
+Disini gw ga maksa untuk menggunakan source saya maupun source dari orang lain tapi untuk belajar kedepannya tidak apa-apa untuk sementara saja, biar kedepannya kamu bisa mempelajari sendiri dan melakukan patch sesuai kebutuhan. dan ingat jangan harap kamu menemukan `Button Close`, `Button Minimize` dan `Button Maximize` di DWM ini dikarenakan full menggunakan **Key Binddings** kamu dapat mengatur key binds kamu di masing-masing file `config.h/config.def.h` perlu di ingat jika kamu mengubahnya di file `config.def.h` maka `config.h` harus di delete terlebih dahulu dan akan otomatis terbentuk saat install menggunakan `sudo make clean install` dan setiap perubahan harus di terapkan dengan cara ini yaitu dengan cara menginstall. selengkapanya baca-baca pada website resminya `suckless.org` atau liat tutorial di `youtube`
+
 - [dwm.suckless.org](https://dwm.suckless.org/) - **Dynamic Window Manager**
+
+    Patch & Features
+
+  1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Fullgaps
+  2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
+  3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
+  4. Dan kalo pake source dari saya ini sudah include function keyboard manage volume dan kecerahan layar dan sudah menggunakn versi terbaru `6.4` saat tutorial ini dibuat
+  5. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
 
     Installation
 
@@ -352,16 +365,35 @@ exec dwm
     sudo make clean install
     ```
 
+    Key Binddings/Shourcut keyboard
+
+  1. `super + enter` -> Open terminal
+  2. `super + q` -> Close Window
+  3. `super + p` -> Open dmenu
+  4. `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
+  5. `super + shift + q` -> Exit dwm
+  6. lainny ada di file `config.h` dan atur sendir sesuai kebutuhan
+
 - [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
+
+    Simple Terminal (ST) dari `Bugswriter` menurut saya ini sangat bagus namun ada kekurangan yaitu belum support `glyph wide support` dimana kondisi ni unutk menampilkan icon, tampil hanya sebagaian saja bagian kiri tampil sempurna dan kanan akan terpotong, jadi caranya tinggal kamu tambahkan patch baru dari [download di sini](https://st.suckless.org/patches/glyph_wide_support/) -> Pilih ynag `using boxdraw` tinggal di patch dan benarin yang error selesai, hal ini saya alami ketik mengunakan `nvim-tree` untuk menampilkan icon file/directory dan bisa teratasi dengan menerapkan `glphy wide support` pilih khusu yang boxdraw. Dan pastikan sebelum patch sudah paham patch sebenarnya buat apa dll..
 
     Installation
 
     ```shell
     cd .local/src/
+
+    # silahkan kunjungi profile github nya.
     git clone https://github.com/Bugswriter/st.git
     cd st
     sudo make clean install
     ```
+
+    Key Binddings/Shourcut keyboard
+
+  1. `alt + c` -> copy character
+  2. `alt + v` -> paste character
+  3. lainny ada di file `config.h` dan atur sedndiri sesuai kebutuhan
 
 - [tools.suckless.org](https://tools.suckless.org/dmenu/) - **Dynamic Menu**
 
@@ -386,6 +418,10 @@ exec dwm
     ```
 
     Cara menampilkan informasi pada dwmblocks
+
+    Pada intinya smua yang di tampilkan pada dwmblocks adalah script yang dibuat dan bisa di excute dengan cara menggunakan `chmod +x nama script` contohnya dapat kamu lihat di sini [Status Bar](https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar), kamu dapar mendownload semua `raw` dan kemudian kamu simpan kedalam directory `.local/bin` dan pastikan sudah bisa di execute caranya gunakan `chmod` +x di sini artinya hanya bisa di execute pada directory itu saja dan agar bisa di akses atau di execute di lokasi manapun tambahkan path pada bash profile seperti ini `export PATH="$HOME/.local/bin/:$PATH"` dan sekarang semua script dapata kamu execute diluar dari directory bin tadi. perthatikan pada file `config.h` pada dwmblock
+
+> Bebas saja mau ambil source darimana yang penting paham
 
 **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
 
