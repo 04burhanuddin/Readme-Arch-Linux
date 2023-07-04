@@ -529,7 +529,47 @@ Baca lengkap disni [https://wiki.archlinux.org/title/Uncomplicated_Firewall](htt
 
 ```shell
 sudo pacman -S ufw
+
+# manage ufw
 sudo systemctl start ufw.service
+sudo systemctl status ufw
+
+# menampilkan lis prifle aplikasi
+sudo ufw app list
+
+# melihat detail spesific profile aplikasi
+sudo ufw app info 'SSH'
+
+# memberikan izin http/htpps connection
+sudo ufw allow 'WWW Full'
+sudo ufw allow http
+sudo ufw allow https
+# memberi izin dengan menggunakan port
+sudo ufw allow 80/tcp
+sudo ufw allow 'WWW Secure'
+# allow specific ip address
+sudo ufw allow from 192.168.0.10
+# allow specific port range
+ufw allow 6500:6800/tcp
+
+# cara menghapus UFW rules
+# menampilkan semua list
+sudo ufw status numbered
+# misal menghapus 2 nomer di dapat dari list 
+sudo ufw delete 2
+
+# enable dan disable logs ufw
+sudo ufw logging low
+sudo ufw logging medium
+sudo ufw logging high
+sudo ufw logging off
+
+# remove dan disable firewal
+sudo ufw reset
+sudo ufw disable
+
+# to uninstall
+sudo pacman -R ufw
 ```
 
 ## Install Apache
