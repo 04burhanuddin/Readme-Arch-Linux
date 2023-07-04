@@ -7,7 +7,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 ## Table Of Contents
 
 - Install Arch Linux
-- Install Github-CLI
+- Install GIT Github-CLI & SSH
 - Install Editor
 - Install Window Manager
 - AUR Helper
@@ -38,7 +38,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
 ## **Install Arch Linux**
 
-> **You can try installing on VirtualBox**
+> **Gunakan VirtualBox Untuk experiment, jika masih ragu untuk mengguanakn Arch Linux**
 
 - [Dwonload Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
 - [Balena Eatcher](https://etcher.balena.io/) - Creating bootable
@@ -46,7 +46,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
 **PANDUAN INSTALASI:**
 
-- Masuk ke menu boot seperti biasanya, pada boot option pilih usb penginstalan tekan enter
+- Masuk ke menu `boot` seperti biasanya, pada `boot option pilih` usb penginstalan tekan `enter`
 - Next pilih menu `Arch Linux Install Medium...` dan tunggu sampai masuk ke `tty1`
 - Setelah masuk ke tty1 silahkan konek ke `wifi` dengan cara berikut ini:
 
@@ -66,19 +66,11 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
     # atau
     iwctl --passphrase=PASSPHRASE station wlan0 connect SSID
 
-    # exit iwctl
-    CTRL + D / exit
+    # exit iwctl CTRL + D / ketik exit
     ```
 
-- Setelah itu uji coba koneksi dengan cara
-
-    ```shell
-    ping google.com
-    # exit CTRL + C
-    ping google.com -c5
-    ```
-
-- Lakukan update dan install archinstall, archlinux-keyring
+- Setelah itu uji coba koneksi melakukan test `ping`, misal `ping google.com`
+- Lakukan update dan install `archinstall`, `archlinux-keyring`
 
     ```shell
     pacman -Syu archinstall archlinux-keyring
@@ -90,38 +82,35 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
     archinstall
     ```
 
-    > tunggu sampai masuk ke menu instalasi
+    > Tunggu sampai masuk ke menu instalasi
 
     **Konfigurasi Instalasi**
-  - Arch language (default English) tidak perlu di ubah
-  - Keyboar layout US (skip tidak perlu di ubah)
-  - Mirror region bebas mau di atur atau tidak (saran tidak usah)
-  - Locale language (skip tidak perlu di ubah en_US default)
-  - Locale encoding (skip tidak perlu di ubah utf-8 default)
-  - Drive(s)
-    > Pemilihan lokasi instalasi pastikan kamu memilih hardrive/ssd jangan pilih flas
-    - Tab to select
-  - Disk layout
-    > Note: instalasi full jadi pilih
+  - `Arch language` (default English) tidak perlu di ubah
+  - `Keyboar layout` (default US) skip tidak perlu di ubah
+  - `Mirror region` bebas mau di atur atau tidak (saran tidak usah)
+  - `Locale language` (skip tidak perlu di ubah en_US default)
+  - `Locale encoding` (skip tidak perlu di ubah utf-8 default)
+  - `Drive(s)` (Pemilihan lokasi instalasi) *Tab to select*
+  - Disk layout (**Note:instalasi full**) jadi pilih:
     - wipe all selected...
     - pilih ext4 untuk filesystem
-  - Bootloader (skip saja)
-  - Swap (skip default true)
-  - Hostname (atur sesui ke inginan)
-  - Root Passwor (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh orang
-  - User account (silahkan tambahkan user baru, user dan paddword jangan sampai lupa)
-  - Profile (atur Pilih xorg: install a minimal ... dan untuk `graphics driver` select all
-  - Audio (pilih `pipewire`)
-  - Kernals (skip saja default `linux`)
-  - Addtional package (skip saja biar tidak lama saat proses instalasi)
-  - Network configuration (pilih Use network manager....)
-  - Timezone (disesuaikan saja, saya menggunakan asia/jakarta)
-  - Automatic time sync (skip default true)
-  - Optional repsository (skip)
+  - `Bootloader` (skip saja)
+  - `Swap` (skip default true)
+  - `Hostname` (atur sesui ke inginan)
+  - `Root Passwor` (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh orang
+  - `User account` (silahkan tambahkan user baru, user dan paddword jangan sampai lupa)
+  - `Profile` (atur Pilih xorg: install a minimal ... dan untuk `graphics driver` select all
+  - `Audio` (pilih `pipewire`)
+  - `Kernals` (skip saja default `linux`)
+  - `Addtional package` (skip saja biar tidak lama saat proses instalasi)
+  - `Network configuration` (pilih Use network manager....)
+  - `Timezone` (disesuaikan saja, saya menggunakan asia/jakarta)
+  - `Automatic time sync` (skip default true)
+  - `Optional repsository` (skip)
   - **Terakhir pilih install** and enter continue
-- Tunggu sampai selesai dan seteleh itu reboot dan masuk kemabali login dengan user yang telah dibuat.
+- Tunggu sampai selesai dan seteleh itu `reboot` dan masuk kemabali login dengan user yang telah dibuat.
 - Test koneksi internet apakah masih terhubung dengan cara lakukan `ping google.com`
-- Jika tidak konek gunakan cara ini untuk konek kw `wifi` terlebih dahulu
+- Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
 
     ```shell
     # kamu bisa mempelajari dulu nmcli ini apa sih?
@@ -141,28 +130,163 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
     ping google.com -c5
     ```
 
-## Install Github-CLI
+## Install Git
 
 ```shell
-sudo pacman -S git github-cli
+sudo pacman -S git
+```
 
-# silahkan login dengan akun anda, dengan cara ketik token manual, tidak ada cara lain selain ini, agar bisa clone repository github.
+> **Note:** Berhasil install git tapi belum tentu bisa bebas clone repository yang ada di github dikarenakn membutuhkan authentication `git credential` unutuk itu ikuti langkah di bawah **Menggunakan SSH** atau **Menggunakan Github-CLI**
+
+## AUR Helper
+
+Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih rekomendasikan untuk menggunakan `paru` selengkapanya baca documentasi, alasan mengapa menggunakan `paru` [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
+
+```shell
+# bukan dari github tapi dari aur...
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+```
+
+## Cara Mount Smartphone
+
+> Untuk mount External HDD/Flashdisk saya rasa anda sudah paham.
+
+Mengapa `mount` smartphone, agar memudahkan mendapatkan token maupun SSH keys, kamu bisa membuat sebuah file .txt di `smartphone` untuk menyimpan `token` yang telah kamu buat di akun github kamu tinggal copy dari `smartphone` ke PC/Laptop kamu dengan cara mount, begitupun dengan kamu bisa copy file ssh keys yang telah dibut kedalam `smartphone` untuk memudahkan menempelkan ssh key pada akun github kamu.
+
+```shell
+# gunakan SIMPLE-MTPFS bisa di install dengan menggunakan AUR Helper
+# di sini saya menggunakan paru dan package ini hanya tersedia di aur helper
+# instalasi menggunakan pacman tidak tersedia
+paru -S simple-mtpfs
+# pilih yang no 1 simple-mtpfs
+
+# contoh buat directory baru untuk mount nantinya
+mkdir phone
+
+# untuk melihat list device, pastikan hp dan laptop sudah terhubung
+simple-mtpfs -l
+
+# mount menggunakan perintah
+simple-mtpfs --device 1 ~/phone
+
+ls phone
+# sekarang kamu bisa transfer file dari laptop ke hp atau dari hp ke laptop
+
+# untuk umount sebelum USB di cabut
+fusermount -u phone
+```
+
+**Tips Copy ssh Github**
+
+Gunakan perintah ini untuk copy file ssh keys kamu ke `smartphone`
+
+```shell
+# ikuti langkah di bawah menggunakan ssh untuk membuat ssh key
+cp .ssh/dev.pub phone/ssh.txt
+# ganti ke .txt untuk memudahkan ketika di buka pada smartphone 
+```
+
+> Sekarang kamu memuliki ssh key ada di penyimpanan external `smartphone` kamu tinggal dibuka, copy semua kemudian paste pada SSH Key di pengaturan github kamu. Bebas menggunakan `browser` apa saja untuk login ke akun github, setelah login masuk settings -> SSH and GPG key -> New SSH Key -> title bebas -> key type `authentication key` -> Kye, dan paste key -> add SSH key -> **Lanjut di menggunakan SSH Key**
+
+## Mengunakan Github-CLI
+
+[Docs Github CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli), silahkan klik link untuk mempelajari `Github CLI` saya sendiri lebih suka menggunakn `SSH Key`
+
+Jika belum memiliki token buat di pengaturan akun github settings -> developer settings -> personal acces token -> token classic, silahkan atur `expired` dan `permission` penggunaan token
+
+```shell
+sudo pacman -S github-cli
 gh auth login
 # pilih github.com
-# jika tidak punya token buat dulu di pengaturan akun github settings -> developer settings -> personal acces token -> token classic, silahkan di centang semau permission yang dibutuhkan (centang semua saja).
 ```
+
+> **Note:** Ikuti cara `mount` di atas agar tidak mengetik token satu-persatu.
+
+## Menggunakan SSH Keys Github
+
+[Docs SSH Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+**Membuat SSH Key untuk Github**
+
+```shell
+cd ~/.ssh
+# jika belum memiliki directory .ssh buat terlebih dahulu mkdir .ssh
+
+# membuat ssh key
+ssh-keygen -t rsa -b 4096 -C "contoh@gmail.com"
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/dev/.ssh/id_rsa): ID_RSA_KAMU
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in ....
+Your public key has been saved in ....pub
+The key fingerprint is:
+SHA256:SJ6tYaXowqW0CB..............
+The key's randomart image is:
++---[RSA 4096]----+
+|==o.o. .. .      |
+|B ++o..  . .     |
+|o+.=o.. .   .    |
+|.oooo+ *   .     |
+|. +.o B S   o   E|
+|.+ = . o   . . +.|
+|. = . .       o =|
+|   .          .o+|
+|             ...o|
++----[SHA256]-----+
+```
+
+```shell
+cat ~/.ssh/ID_RSA_KAMU.pub
+# copy semua dan paste ke akun github kamu SSH Key
+
+# start ssh-agent
+eval "$(ssh-agent -s)"
+
+# janagn gunakan file .pub
+ssh-add ~/.ssh/ID_RSA_KAMU
+
+# sebelum run, pastikan ssh keys sudah di pasang pada akun github.
+ssh -T git@github.com
+# fingerprint yes 
+# pastikan sudah sukses seperti ini
+Hi ....! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+> Setelah komputer/laptop reboot, SSH key tidak bisa digunakan harus di tambahkan lagi baru bisa.
+
+Nah biar ga ribet `ss-add ...` buat file baru dengan nama `config`
+
+```shell
+nvim ~/.ssh/config
+```
+
+copy dan paste kedalam file `config`
+
+```shell
+# Github.com server
+Host github.com
+IdentityFile ~/.ssh/ID_RSA
+```
+
+> Kamu bisa membuktikannya dengan cara reboot tanpa file `config` setelah itu ketikkan `ssh -T git@github.com` dan ketika menggunakan file `config`
 
 ## Install Editor
 
-Setelah penginstalan Arch Linux tidak ada editor bawaan, dibawah ini beberapa opsi yang dapat saya berikan, rekomended gunakan `neovim` dan pastikan kamu sudah paham soal cara penggunaanya
+Setelah penginstalan Arch Linux tidak ada editor bawaan, Saya sangat suka menggunakan `neovim`, gunakan text editor yang kamu pahami dan familiar buat kamu
 
 ```shell
-# install sesuai kebutuhan
+# install semua suai kebutuhan saja
 sudo pacman -S neovim 
 sudo pacman -S emacs
 sudo pacman -S vim
 sudo pacman -S nano
 ```
+
+> install editor untuk konfigurasi langkah berikutnya
 
 ## Install Window Manager
 
@@ -182,8 +306,11 @@ sudo pacman -S libxft libxinerama
 
 # kemudian copy 
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
+```
 
-# kemudian modifikasi file .xinitrc seperti dibawah ini
+kemudian modifikasi file `.xinitrc` seperti dibawah ini
+
+```sh
 #!/bin/sh
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -261,16 +388,6 @@ exec dwm
     Cara menampilkan informasi pada dwmblocks
 
 **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
-
-## AUR Helper
-
-Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih rekomendasikan untuk menggunakan paru selengkapanya baca [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
-
-```shell
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-```
 
 ## Install ZSH
 
@@ -355,8 +472,11 @@ Sebenarnya tidak error cuman tidak berfungsi seperti touchapad normal biasanya, 
 ```shell
 # buat file baru di directory xorg..
 sudo nvim /etc/X11/xorg.conf.d/30-touchpad.conf
+```
 
-# copy code ini kedalam file 30-touchapad.conf save dan restart.
+copy code ini kedalam file 30-touchapad.conf save dan restart.
+
+```xml
 Section "InputClass"
 Identifier "devname"
 Driver "libinput"
@@ -648,9 +768,12 @@ systemctl start bluetooth.service
 sudo pacman -S noto-fonts-emoji
 
 # buat file baru
-sudo nvim /etc/fonts/local.conf
+sudo nvim /etc/fonts/local.conf 
+```
 
-# copy dan paste code ini kedalam local.conf save dan restart
+copy dan paste code ini kedalam local.conf save dan restart
+
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -730,47 +853,6 @@ super + shift + p
 sxhkd &
 # dan tambahkan sxhkd & pada file .xinitrc sebelum exac dwm
 # screenshoot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
-```
-
-## Mneggunakan SSH Key untuk Github
-
-Jadi sebelumnya menggunaakan github-cli dan saya lebih suka menggunakan ssh key berikut ini ada cara settingnya. sebelumnya remove dulu `sudo pacman -Rsuc github-cli` karena kita tidak menggunakan nya lagi
-> [referensi here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-```shell
-cd ~/.ssh
-ssh-keygen -t rsa -b 4096 -C "contoh@gmail.com"
-
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/dev/.ssh/id_rsa): YOUR_ID
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in ....
-Your public key has been saved in ....pub
-The key fingerprint is:
-SHA256:SJ6tYaXowqW0CB..............
-The key's randomart image is:
-+---[RSA 4096]----+
-|==o.o. .. .      |
-|B ++o..  . .     |
-|o+.=o.. .   .    |
-|.oooo+ *   .     |
-|. +.o B S   o   E|
-|.+ = . o   . . +.|
-|. = . .       o =|
-|   .          .o+|
-|             ...o|
-+----[SHA256]-----+
-
-cat ~/.ssh/YOUR_ID.pub
-# copy semua dan simpan ke ssh keys github settings -> SSH and GPG Keys -> new ssh
-
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/YOUR_ID HERE
-
-# pastikan sudah sukses seperti ini
-ssh -T git@github.com
-Hi ....! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 ## Install Neofetch

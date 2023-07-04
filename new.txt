@@ -1,0 +1,17 @@
+
+**Opss.. jangan bingung dulu bagaimana menyalin ssh key saya ke github, berikut caranya**
+
+Pastikan kamu sudah login ke akun github pada browser `smartphone` kamu ntah pake chrome dll. ini bertujuan untuk memudahkan kmau menemplekan ssk key yang sudah kamu buat, nah sekarang ikuti langkah di bawah ini untuk menyalin ssh key kamu ke `smartphone`
+
+> [MTP referensi here](https://wiki.archlinux.org/title/Media_Transfer_Protocol)
+
+Copy file ssh key kedalam ddirectory `phone` yang sudah di `mount` tadi dengan menggunakan perintah ini. Menggantinya ke .txt untuk memudahkan kamu saat membukanya di `smartphone`
+
+```shell
+cp .ssh/dev.pub phone/ssh.txt
+
+# umount dulu sebelum usb di cabut
+fusermount -u phone
+```
+
+> Sekaran kamu sudah memiliki file ssh.txt silahkan di buka dan salin semua isinya dan tempelkan ke ssh keys di akun github kamu masuk settings -> SSH and GPG key -> New SSH Key -> title bebas -> key type `authentication key` -> Kye, dan paste key -> add SSH key lanjut ke bawah.
