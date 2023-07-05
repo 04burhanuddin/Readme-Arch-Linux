@@ -1,4 +1,4 @@
-# **SETUP ARCH LINUX**
+# **README ARCH LINUX**
 
 Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
@@ -9,12 +9,12 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Install Arch Linux
 - Install GIT
 - Mount Smartphone
-- Mengguanakn Github-CLI
+- Menggunakan Github-CLI
 - Menggunakan SSH Keys
 - Install Editor
 - Install Window Manager
 - AUR Helper
-- Install ZSH
+- Install ZSH & Plugin ZSH
 - Install Browser
 - Install Picom
 - Touchpad Error
@@ -25,25 +25,26 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Install Composer
 - Laravel Global Installer
 - Install Node JS Using NVM
+- Install Golang
+- Install Python
 - Install Java
 - Install Android Studio
-- Install Flutter
 - Install Visual Studio Code
+- Install Flutter
 - Configure Input & Output Audio
 - Install Bluetooth
 - Manage Font
-- Set Walpaper
+- Set Wallpaper
 - Install Neofetch
 - Setup Neovim
 - Cara Screenshoot
-- Meggunakan SSH key passphrases
-- Others
+- Others Package
 
 ## **Install Arch Linux**
 
-> **Gunakan VirtualBox Untuk experiment, jika masih ragu untuk mengguanakn Arch Linux**
+> **Gunakan VirtualBox Untuk experiment, jika masih ragu untuk menggunakan Arch Linux**
 
-- [Dwonload Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
+- [Download Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
 - [Balena Eatcher](https://etcher.balena.io/) - Creating bootable
 - Sebelum lanjut instalasi pastikan kamu memiliki koneksi internet yang cukup stabil. **wajib konek ke internet**
 
@@ -53,85 +54,81 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Next pilih menu `Arch Linux Install Medium...` dan tunggu sampai masuk ke `tty1`
 - Setelah masuk ke tty1 silahkan konek ke `wifi` dengan cara berikut ini:
 
-    ```shell
-    # ketikkan perintah ini pada terminal tty1 dan nanti masuk ke mode iwctl
-    iwctl
+  ```shell
+  # ketikkan perintah ini pada terminal tty1 dan nanti masuk ke mode iwctl
+  iwctl
 
-    # untuk mendapatkan device list contoh wlan0
-    device list
+  # untuk mendapatkan device list contoh wlan0
+  device list
 
-    # menampilkan semua list wifi yang tersedia
-    station wlan0 get-networks
-    
-    # konek ke wifi
-    station wlan0 connect ENTER_SSID
-    
-    # atau
-    iwctl --passphrase=PASSPHRASE station wlan0 connect SSID
+  # menampilkan semua list wifi yang tersedia
+  station wlan0 get-networks
+  # konek ke wifi
+  station wlan0 connect ENTER_SSID
+  # atau
+  iwctl --passphrase=PASSPHRASE station wlan0 connect SSID
 
-    # exit iwctl CTRL + D / ketik exit
-    ```
+  # exit iwctl CTRL + D / ketik exit
+  ```
 
 - Setelah itu uji coba koneksi melakukan test `ping`, misal `ping google.com`
 - Lakukan update dan install `archinstall`, `archlinux-keyring`
 
-    ```shell
-    pacman -Syu archinstall archlinux-keyring
-    ```
+  ```shell
+  pacman -Syu archinstall archlinux-keyring
+  ```
 
 - Setelah semua update dan instalasi selesai tinggal install menggunakan perintah
 
-    ```shell
-    archinstall
-    ```
+  ```shell
+  archinstall
+  ```
 
-    > Tunggu sampai masuk ke menu instalasi
+   > Tunggu sampai masuk ke menu instalasi
 
-    **Konfigurasi Instalasi**
+   **Konfigurasi Instalasi:**
+
   - `Arch language` (default English) tidak perlu di ubah
-  - `Keyboar layout` (default US) skip tidak perlu di ubah
+  - `Keyboard layout` (default US) skip tidak perlu di ubah
   - `Mirror region` bebas mau di atur atau tidak (saran tidak usah)
   - `Locale language` (skip tidak perlu di ubah en_US default)
   - `Locale encoding` (skip tidak perlu di ubah utf-8 default)
   - `Drive(s)` (Pemilihan lokasi instalasi) *Tab to select*
-  - Disk layout (**Note:instalasi full**) jadi pilih:
-    - wipe all selected...
-    - pilih ext4 untuk filesystem
+  - `Disk layout` (**Note:instalasi full**) jadi pilih:
+                  - wipe all selected...
+                  - pilih ext4 untuk filesystem
   - `Bootloader` (skip saja)
   - `Swap` (skip default true)
-  - `Hostname` (atur sesui ke inginan)
-  - `Root Passwor` (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh orang
-  - `User account` (silahkan tambahkan user baru, user dan paddword jangan sampai lupa)
-  - `Profile` (atur Pilih xorg: install a minimal ... dan untuk `graphics driver` select all
+  - `Hostname` (atur sesuai keinginan)
+  - `Root Password` (gunakan password yang mudah kamu ingat sendiri dan susah di tebak oleh orang)
+  - `User account` (silahkan tambahkan user baru, user dan password jangan sampai lupa)
+  - `Profile` (atur Pilih xorg) install a minimal ... dan untuk `graphics driver` select all
   - `Audio` (pilih `pipewire`)
   - `Kernals` (skip saja default `linux`)
-  - `Addtional package` (skip saja biar tidak lama saat proses instalasi)
+  - `Additional package` (skip saja biar tidak lama saat proses instalasi)
   - `Network configuration` (pilih Use network manager....)
   - `Timezone` (disesuaikan saja, saya menggunakan asia/jakarta)
   - `Automatic time sync` (skip default true)
-  - `Optional repsository` (skip)
+  - `Optional repository` (skip)
   - **Terakhir pilih install** and enter continue
-- Tunggu sampai selesai dan seteleh itu `reboot` dan masuk kemabali login dengan user yang telah dibuat.
-- Test koneksi internet apakah masih terhubung dengan cara lakukan `ping google.com`
-- Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
+  - Tunggu sampai selesai dan setelah itu `reboot` dan masuk kembali login dengan user yang telah dibuat.
+  - Test koneksi internet apakah masih terhubung dengan cara melakukan `ping google.com`
+  - Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
 
-    ```shell
-    # kamu bisa mempelajari dulu nmcli ini apa sih?
-    nmcli
+   ```shell
+   # kamu bisa mempelajari dulu nmcli ini apa sih?
+   nmcli
 
-    # mendapatkan list wifi
-    nmcli dev wifi list
-    
-    # konek ke wifi
-    sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
-    # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
-    # melihat koneksi wifi
-    
-    nmcli connection show
-    # uji coba dengan test ping ke google.com -c5
-    
-    ping google.com -c5
-    ```
+   # mendapatkan list wifi
+   nmcli dev wifi list
+   # konek ke wifi
+   sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
+   # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
+   # melihat koneksi wifi
+   nmcli connection show
+   # uji coba dengan test ping ke google.com -c5
+   ping google.com -c5
+   ```
 
 ## Install Git
 
@@ -139,11 +136,11 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 sudo pacman -S git
 ```
 
-> **Note:** Berhasil install git tapi belum tentu bisa bebas clone repository yang ada di github dikarenakn membutuhkan authentication `git credential` unutuk itu ikuti langkah di bawah **Menggunakan SSH** atau **Menggunakan Github-CLI**
+> **Note:** Berhasil install git tapi belum tentu bisa bebas clone repository yang ada di github dikarenakan membutuhkan authentication `git credential` untuk itu ikuti langkah di bawah **Menggunakan SSH** atau **Menggunakan Github-CLI**
 
 ## AUR Helper
 
-Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih rekomendasikan untuk menggunakan `paru` selengkapanya baca documentasi, alasan mengapa menggunakan `paru` [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
+Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih merekomendasikan untuk menggunakan `paru` selengkapnya baca dokumentasi, alasan mengapa menggunakan `paru` [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
 
 ```shell
 # bukan dari github tapi dari aur...
@@ -156,7 +153,7 @@ makepkg -si
 
 > Untuk mount External HDD/Flashdisk saya rasa anda sudah paham.
 
-Mengapa `mount` smartphone, agar memudahkan mendapatkan token maupun SSH keys, kamu bisa membuat sebuah file .txt di `smartphone` untuk menyimpan `token` yang telah kamu buat di akun github kamu tinggal copy dari `smartphone` ke PC/Laptop kamu dengan cara mount, begitupun dengan kamu bisa copy file ssh keys yang telah dibut kedalam `smartphone` untuk memudahkan menempelkan ssh key pada akun github kamu.
+Mengapa `mount` smartphone, agar memudahkan mendapatkan token maupun SSH keys, kamu bisa membuat sebuah file .txt di `smartphone` untuk menyimpan `token` yang telah kamu buat di akun github kamu tinggal copy dari `smartphone` ke PC/Laptop kamu dengan cara mount, begitupun dengan kamu bisa copy file ssh keys yang telah dibuat ke dalam `smartphone` untuk memudahkan menempelkan ssh key pada akun github kamu.
 
 ```shell
 # gunakan SIMPLE-MTPFS bisa di install dengan menggunakan AUR Helper
@@ -177,7 +174,8 @@ simple-mtpfs --device 1 ~/phone
 ls phone
 # sekarang kamu bisa transfer file dari laptop ke hp atau dari hp ke laptop
 
-# untuk umount sebelum USB di cabut
+
+# untuk umount sebelum USB dicabut
 fusermount -u phone
 ```
 
@@ -188,16 +186,16 @@ Gunakan perintah ini untuk copy file ssh keys kamu ke `smartphone`
 ```shell
 # ikuti langkah di bawah menggunakan ssh untuk membuat ssh key
 cp .ssh/dev.pub phone/ssh.txt
-# ganti ke .txt untuk memudahkan ketika di buka pada smartphone 
+# ganti ke .txt untuk memudahkan ketika di buka pada smartphone
 ```
 
-> Sekarang kamu memuliki ssh key ada di penyimpanan external `smartphone` kamu tinggal dibuka, copy semua kemudian paste pada SSH Key di pengaturan github kamu. Bebas menggunakan `browser` apa saja untuk login ke akun github, setelah login masuk settings -> SSH and GPG key -> New SSH Key -> title bebas -> key type `authentication key` -> Kye, dan paste key -> add SSH key -> **Lanjut di menggunakan SSH Key**
+> Sekarang kamu memiliki ssh key ada di penyimpanan external `smartphone` kamu tinggal dibuka, copy semua kemudian paste pada SSH Key di pengaturan github kamu. Bebas menggunakan `browser` apa saja untuk login ke akun github, setelah login masuk settings -> SSH and GPG key -> New SSH Key -> title bebas -> key type `authentication key` -> Kye, dan paste key -> add SSH key -> **Lanjut di menggunakan SSH Key**
 
-## Mengunakan Github-CLI
+## Menggunakan Github-CLI
 
-[Docs Github CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli), silahkan klik link untuk mempelajari `Github CLI` saya sendiri lebih suka menggunakn `SSH Key`
+[Docs Github CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli), silahkan klik link untuk mempelajari `Github CLI` saya sendiri lebih suka menggunakan `SSH Key`
 
-Jika belum memiliki token buat di pengaturan akun github settings -> developer settings -> personal acces token -> token classic, silahkan atur `expired` dan `permission` penggunaan token
+Jika belum memiliki token buat di pengaturan akun github settings -> developer settings -> personal access token -> token classic, silahkan atur `expired` dan `permission` penggunaan token
 
 ```shell
 sudo pacman -S github-cli
@@ -222,23 +220,23 @@ ssh-keygen -t rsa -b 4096 -C "contoh@gmail.com"
 
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/dev/.ssh/id_rsa): ID_RSA_KAMU
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
 Your identification has been saved in ....
 Your public key has been saved in ....pub
 The key fingerprint is:
 SHA256:SJ6tYaXowqW0CB..............
 The key's randomart image is:
 +---[RSA 4096]----+
-|==o.o. .. .      |
-|B ++o..  . .     |
-|o+.=o.. .   .    |
-|.oooo+ *   .     |
-|. +.o B S   o   E|
-|.+ = . o   . . +.|
-|. = . .       o =|
-|   .          .o+|
-|             ...o|
+|==o.o. .. . |
+|B ++o.. . . |
+|o+.=o.. . . |
+|.oooo+ * . |
+|. +.o B S o E|
+|.+ = . o . . +.|
+|. = . . o =|
+| . .o+|
+| ...o|
 +----[SHA256]-----+
 ```
 
@@ -249,17 +247,17 @@ cat ~/.ssh/ID_RSA_KAMU.pub
 # start ssh-agent
 eval "$(ssh-agent -s)"
 
-# janagn gunakan file .pub
+# jangan gunakan file .pub
 ssh-add ~/.ssh/ID_RSA_KAMU
 
 # sebelum run, pastikan ssh keys sudah di pasang pada akun github.
 ssh -T git@github.com
-# fingerprint yes 
+# fingerprint yes
 # pastikan sudah sukses seperti ini
 Hi ....! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-> Setelah komputer/laptop reboot, SSH key tidak bisa digunakan harus di tambahkan lagi baru bisa.
+> Setelah komputer/laptop reboot, SSH key tidak bisa digunakan harus ditambahkan lagi baru bisa.
 
 Nah biar ga ribet `ss-add ...` buat file baru dengan nama `config`
 
@@ -267,7 +265,7 @@ Nah biar ga ribet `ss-add ...` buat file baru dengan nama `config`
 nvim ~/.ssh/config
 ```
 
-copy dan paste kedalam file `config`
+copy dan paste ke dalam file `config`
 
 ```shell
 # Github.com server
@@ -282,8 +280,8 @@ IdentityFile ~/.ssh/ID_RSA
 Setelah penginstalan Arch Linux tidak ada editor bawaan, Saya sangat suka menggunakan `neovim`, gunakan text editor yang kamu pahami dan familiar buat kamu
 
 ```shell
-# install semua suai kebutuhan saja
-sudo pacman -S neovim 
+# install semua sesuai kebutuhan saja
+sudo pacman -S neovim
 sudo pacman -S emacs
 sudo pacman -S vim
 sudo pacman -S nano
@@ -302,23 +300,25 @@ mkdir -p .local/src
 # ikuti langkah di bawah untuk menginstall
 ```
 
-Sebeleum melakukan instlasi di bawah agar tidak terjadi error terlebih dahulu install package ini dan lakukan konfigurasi berikut ini
+Sebelum melakukan instalasi di bawah agar tidak terjadi error terlebih dahulu install package ini dan lakukan konfigurasi berikut ini
 
 ``` shell
 sudo pacman -S libxft libxinerama
 
-# kemudian copy 
+# kemudian copy
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 ```
 
 kemudian modifikasi file `.xinitrc` seperti dibawah ini
 
-```sh
+```shell
 #!/bin/sh
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
+
 # merge in defaults and keymaps
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
@@ -344,86 +344,106 @@ dwmblocks &
 exec dwm
 ```
 
-Disini gw ga maksa untuk menggunakan source saya maupun source dari orang lain tapi untuk belajar kedepannya tidak apa-apa untuk sementara saja, biar kedepannya kamu bisa mempelajari sendiri dan melakukan patch sesuai kebutuhan. dan ingat jangan harap kamu menemukan `Button Close`, `Button Minimize` dan `Button Maximize` di DWM ini dikarenakan full menggunakan **Key Binddings** kamu dapat mengatur key binds kamu di masing-masing file `config.h/config.def.h` perlu di ingat jika kamu mengubahnya di file `config.def.h` maka `config.h` harus di delete terlebih dahulu dan akan otomatis terbentuk saat install menggunakan `sudo make clean install` dan setiap perubahan harus di terapkan dengan cara ini yaitu dengan cara menginstall. selengkapanya baca-baca pada website resminya `suckless.org` atau liat tutorial di `youtube`
+Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untuk belajar kedepannya tidak apa-apa untuk sementara saja, biar kedepannya kamu bisa mempelajari sendiri dan melakukan patch sesuai kebutuhan. dan ingat jangan harap kamu menemukan `Button Close`, `Button Minimize` dan `Button Maximize` di DWM ini dikarenakan full menggunakan **Key Bindings** kamu dapat mengatur key binds kamu di masing-masing file `config.h/config.def.h` perlu di ingat jika kamu mengubahnya di file `config.def.h` maka `config.h` harus di delete terlebih dahulu dan akan otomatis terbentuk saat install menggunakan `sudo make clean install` dan setiap perubahan harus diterapkan dengan cara ini yaitu dengan cara menginstall. selengkapanya baca-baca pada website resminya `suckless.org` atau liat tutorial di `youtube`
 
 - [dwm.suckless.org](https://dwm.suckless.org/) - **Dynamic Window Manager**
 
-    Patch & Features
+   Install Default
 
-  1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Fullgaps
-  2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
-  3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
-  4. Dan kalo pake source dari saya ini sudah include function keyboard manage volume dan kecerahan layar dan sudah menggunakn versi terbaru `6.4` saat tutorial ini dibuat
-  5. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
+   ```shell
+   cd .local/src/
+   git clone https://git.suckless.org/dwm
+   cd dwm
+   sudo make clean install
+   ```
 
-    Installation
+   > Surce yang saya gunakan [https://github.com/04burhanuddin/dwm.git](https://github.com/04burhanuddin/dwm.git)
 
-    ```shell
-    cd .local/src/
-    git clone https://github.com/04burhanuddin/dwm.git
-    cd dwm
-    sudo make clean install
-    ```
+   Patch & Features (dwm v6.4)
 
-    Key Binddings/Shourcut keyboard
+   1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Full Gaps
+   2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
+   3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
+   4. [https://dwm.suckless.org/patches/alwayscenter/](https://dwm.suckless.org/patches/alwayscenter/) - Always Center
+   5. [https://dwm.suckless.org/patches/hide_vacant_tags/](https://dwm.suckless.org/patches/hide_vacant_tags/) - Hide Vacant Tags
+   6. Dan kalo pake source dari saya ini sudah include function keyboard manage volume dan kecerahan layar dan sudah menggunakan versi terbaru `6.4` saat tutorial ini dibuat
+   7. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
 
-  1. `super + enter` -> Open terminal
-  2. `super + q` -> Close Window
-  3. `super + p` -> Open dmenu
-  4. `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
-  5. `super + shift + q` -> Exit dwm
-  6. lainny ada di file `config.h` dan atur sendir sesuai kebutuhan
+    Installation Dari Source Lain
+
+   ```shell
+   cd .local/src/
+   git clone https://github.com/04burhanuddin/dwm.git
+   cd dwm
+   sudo make clean install
+   ```
+
+   Key Bindings/Shortcut keyboard
+
+   1. `super + enter` -> Open terminal
+   2. `super + q` -> Close Window
+   3. `super + p` -> Open dmenu
+   4. `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
+   5. `super + shift + q` -> Exit dwm
+   6. lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
 
 - [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
 
-    Simple Terminal (ST) dari `Bugswriter` menurut saya ini sangat bagus namun ada kekurangan yaitu belum support `glyph wide support` dimana kondisi ni unutk menampilkan icon, tampil hanya sebagaian saja bagian kiri tampil sempurna dan kanan akan terpotong, jadi caranya tinggal kamu tambahkan patch baru dari [download di sini](https://st.suckless.org/patches/glyph_wide_support/) -> Pilih ynag `using boxdraw` tinggal di patch dan benarin yang error selesai, hal ini saya alami ketik mengunakan `nvim-tree` untuk menampilkan icon file/directory dan bisa teratasi dengan menerapkan `glphy wide support` pilih khusu yang boxdraw. Dan pastikan sebelum patch sudah paham patch sebenarnya buat apa dll..
+   Simple Terminal (ST) dari `Bugswriter` menurut saya ini sangat bagus namun ada kekurangan yaitu belum support `glyph wide support` dimana kondisi ni untuk menampilkan icon, tampil hanya sebagian saja bagian kiri tampil sempurna dan kanan akan terpotong, jadi caranya tinggal kamu tambahkan patch baru dari [download di sini](https://st.suckless.org/patches/glyph_wide_support/) -> Pilih yang `using boxdraw` tinggal di patch dan benar yang error selesai, hal ini saya alami ketika menggunakan `nvim-tree` untuk menampilkan icon file/directory dan bisa teratasi dengan menerapkan `glphy wide support` pilih khusu yang boxdraw. Dan pastikan sebelum patch sudah paham patch sebenarnya buat apa dll..
 
-    Installation
+   Install Default
 
-    ```shell
-    cd .local/src/
+   ```shell
+   cd .local/src/
+   git clone git clone https://git.suckless.org/st
+   cd dwm
+   sudo make clean install
+   ```
 
-    # silahkan kunjungi profile github nya.
-    git clone https://github.com/Bugswriter/st.git
-    cd st
-    sudo make clean install
-    ```
+   Installation Dari Source Lain
 
-    Key Binddings/Shourcut keyboard
+   ```shell
+   cd .local/src/
 
-  1. `alt + c` -> copy character
-  2. `alt + v` -> paste character
-  3. lainny ada di file `config.h` dan atur sedndiri sesuai kebutuhan
+   # silahkan kunjungi profile github nya.
+   git clone https://github.com/Bugswriter/st.git
+   cd st
+   sudo make clean install
+   ```
+
+   Key Bindings/Shortcut keyboard
+
+   1. `alt + c` -> copy character
+   2. `alt + v` -> paste character
+   3. lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
 
 - [tools.suckless.org](https://tools.suckless.org/dmenu/) - **Dynamic Menu**
 
-    Installation
+   Installation
 
-    ```shell
-    cd .local/src/
-    git clone git clone https://git.suckless.org/dmenu
-    cd dmenu
-    sudo make clean install
-    ```
+   ```shell
+   cd .local/src/
+   git clone git clone https://git.suckless.org/dmenu
+   cd dmenu
+   sudo make clean install
+   ```
 
 - [Dwmblocks](https://) - **Dwmblocks**
 
-    Installation
+   Installation Dari Source Lain
 
-    ```shell
-    cd .local/src/
-    git clone git clone https://github.com/Bugswriter/dwmblocks.git
-    cd dwmblocks
-    sudo make clean install
-    ```
+   ```shell
+   cd .local/src/
+   git clone git clone https://github.com/Bugswriter/dwmblocks.git
+   cd dwmblocks
+   sudo make clean install
+   ```
 
-    Cara menampilkan informasi pada dwmblocks
+   Cara menampilkan informasi pada dwmblocks
 
-    Pada intinya smua yang di tampilkan pada dwmblocks adalah script yang dibuat dan bisa di excute dengan cara menggunakan `chmod +x nama script` contohnya dapat kamu lihat di sini [Status Bar](https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar), kamu dapar mendownload semua `raw` dan kemudian kamu simpan kedalam directory `.local/bin` dan pastikan sudah bisa di execute caranya gunakan `chmod` +x di sini artinya hanya bisa di execute pada directory itu saja dan agar bisa di akses atau di execute di lokasi manapun tambahkan path pada bash profile seperti ini `export PATH="$HOME/.local/bin/:$PATH"` dan sekarang semua script dapata kamu execute diluar dari directory bin tadi. perthatikan pada file `config.h` pada dwmblock
+   Pada intinya semua yang ditampilkan pada dwmblocks adalah script yang dibuat dan bisa di execute dengan cara menggunakan `chmod +x nama script` contohnya dapat kamu lihat di sini [Status Bar](https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar), kamu dapat mendownload semua `raw` dan kemudian kamu simpan kedalam directory `.local/bin` dan pastikan sudah bisa di execute caranya gunakan `chmod` +x di sini artinya hanya bisa di execute pada directory itu saja dan agar bisa di akses atau di execute di lokasi manapun tambahkan path pada bash profile seperti ini `export PATH="$HOME/.local/bin/:$PATH"` dan sekarang semua script dapata kamu execute diluar dari directory bin tadi. perhatikan pada file `config.h` pada dwmblock
 
-> Bebas saja mau ambil source darimana yang penting paham
-
-**Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
+   **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
 
 ## Install ZSH
 
@@ -431,17 +451,16 @@ Disini gw ga maksa untuk menggunakan source saya maupun source dari orang lain t
 sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# jika belum punya curl 
+# jika belum punya curl
 sudo pacman -S curl
-
-# stelah itu restart
+# setelah itu restart
 ```
 
 Install plugin ZSH
 
 ```shell
-# untuk memasang clone smua pligun ini
-# autosuggesions plugin
+# untuk memasang clone semua plugin ini
+# autosuggestions plugin
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 # zsh-syntax-highlighting plugin
@@ -456,7 +475,7 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZS
 # implementasi
 # Open ~/.zshrc
 # cari bagian plugins=(git)
-# copy dan paste code do bawah ini kedalam plugins menjadi seperti ini
+# copy dan paste code dibawah ini kedalam plugins menjadi seperti ini
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 ```
 
@@ -503,21 +522,21 @@ sudo nvim .config/picom/picom.conf
 
 ## Touchpad Error
 
-Sebenarnya tidak error cuman tidak berfungsi seperti touchapad normal biasanya, double tap tidak berfungsi
+Sebenarnya tidak error cuman tidak berfungsi seperti touchpad normal biasanya, double tap tidak berfungsi
 
 ```shell
 # buat file baru di directory xorg..
 sudo nvim /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
 
-copy code ini kedalam file 30-touchapad.conf save dan restart.
+copy code ini ke dalam file 30-touchpad.conf save dan restart.
 
 ```xml
 Section "InputClass"
 Identifier "devname"
 Driver "libinput"
-    Option "Tapping" "on"
-    Option "NaturalScrolling" "true"
+  Option "Tapping" "on"
+  Option "NaturalScrolling" "true"
 EndSection
 ```
 
@@ -525,7 +544,7 @@ EndSection
 
 ## Install Firewall
 
-Baca lengkap disni [https://wiki.archlinux.org/title/Uncomplicated_Firewall](https://wiki.archlinux.org/title/Uncomplicated_Firewall)
+Baca lengkap disini [https://wiki.archlinux.org/title/Uncomplicated_Firewall](https://wiki.archlinux.org/title/Uncomplicated_Firewall)
 
 ```shell
 sudo pacman -S ufw
@@ -534,13 +553,13 @@ sudo pacman -S ufw
 sudo systemctl start ufw.service
 sudo systemctl status ufw
 
-# menampilkan lis prifle aplikasi
+# menampilkan lis profil aplikasi
 sudo ufw app list
 
-# melihat detail spesific profile aplikasi
+# melihat detail specific profile aplikasi
 sudo ufw app info 'SSH'
 
-# memberikan izin http/htpps connection
+# memberikan izin http/https connection
 sudo ufw allow 'WWW Full'
 sudo ufw allow http
 sudo ufw allow https
@@ -555,7 +574,7 @@ ufw allow 6500:6800/tcp
 # cara menghapus UFW rules
 # menampilkan semua list
 sudo ufw status numbered
-# misal menghapus 2 nomer di dapat dari list 
+# misal menghapus 2 nomor di dapat dari list
 sudo ufw delete 2
 
 # enable dan disable logs ufw
@@ -564,7 +583,7 @@ sudo ufw logging medium
 sudo ufw logging high
 sudo ufw logging off
 
-# remove dan disable firewal
+# remove dan disable firewall
 sudo ufw reset
 sudo ufw disable
 
@@ -598,7 +617,8 @@ sudo systemctl start mariadb.service
 sudo systemctl start mysqld
 sudo systemctl status mysqld
 
-# sequre mysql
+
+# secure mysql
 sudo mysql_secure_installation
 
 # menambahkan user baru
@@ -617,9 +637,9 @@ MariaDB [mysql]> create user 'YOUR_USERNAME'@'localhost' identified by 'YOUR_PAS
 MariaDB [mysql]> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_USERNAME'@'localhost' WITH GRANT OPTION;
 MariaDB [mysql]> FLUSH PRIVILEGES;
 
-    # cek kembali
+# cek kembali
 MariaDB [mysql]> SELECT user, host FROM mysql.user;
-MariaDB [mysql]>quit; 
+MariaDB [mysql]>quit;
 ```
 
 ## Install PHP
@@ -629,7 +649,8 @@ Perlu di ingat perintah ini digunakan untuk menginstall php dengan versi terbaru
 ```shell
 sudo pacman -S php
 
-# enable module php, ektifakn module yang dibutuhkan saja
+
+# enable module php, aktifkan module yang dibutuhkan saja
 sudo nvim /etc/php/php.ini
 ```
 
@@ -655,12 +676,12 @@ Baca lengkap [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
 
-Path otomatis akan di tambahkan pada bash profile, jika menggunakan `ZSH` pastikan baris ini ada pada baris bagian bawah, simplenya jika bisa menjalankan `nvm --version` keluar versi nvm, berarti barisnya sudah ada jika tidak bisa tambahkan secara manual, copy code di bawah ini dan paste pada bash profile yang diunakan.
+Path otomatis akan ditambahkan pada bash profile, jika menggunakan `ZSH` pastikan baris ini ada pada baris bagian bawah, simplenya jika bisa menjalankan `nvm --version` keluar versi nvm, berarti barisnya sudah ada jika tidak bisa tambahkan secara manual, copy code di bawah ini dan paste pada bash profile yang digunakan.
 
 ```shell
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 ```
 
 Next install `Node JS`
@@ -734,11 +755,11 @@ makepkg -si
 [https://docs.flutter.dev/get-started/install/linux](https://docs.flutter.dev/get-started/install/linux) - Download flutter
 
 ```shell
-# buat directory baru sebenarnya bebas saja, tapi di sini buat directory baru saja biar rapih
+# buat directory baru sebenarnya bebas saja, tapi disini buat directory baru saja biar rapih
 # menggunakan titik biar tidak terlihat
 mkdir .development
 
-# pindahkan file flutter .tar.xz yang telah di download kedalam directory .development
+# pindahkan file flutter .tar.xz yang telah di download ke dalam directory .development
 
 cd .development
 # extract file .tar.xz setelah di extract hapus file flutter .tar.xz
@@ -754,7 +775,7 @@ export PATH="$PATH:/home/YUR_USER/.development/flutter/bin"
 flutter doctor -v
 # ikuti semua yang disarankan untuk di execute misal android license dll.
 
-# manage flutter, rekomended disable saja yang tidak diperlukan
+# manage flutter, recommended disable saja yang tidak diperlukan
 flutter config --no-enable-web
 flutter config --no-enable-macos-desktop
 flutter config --no-enable-windows-desktop
@@ -774,10 +795,10 @@ git clone https://aur.archlinux.org/packettracer.git
 # gunakan link di atas untuk mendownload packet tracer jika tidak punya akun silahkan buat dulu
 # kemudian pindahkan file packet tracer ...deb yang telah di download kedalam directory yang di clone tadi.
 
-# masuk kedalam directory packettracer dan install
+# masuk ke dalam directory packet tracer dan install
 cd packettracer
 
-# pastikan file packet tracer yang .deb ada di dalam directory packettracer kemudian install
+# pastikan file packet tracer yang .deb ada di dalam directory packet tracer kemudian install
 ls
 makepkg -si
 ```
@@ -790,21 +811,23 @@ composer global require laravel/installer
 # tambahkan path ini pada bash profile
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
-# check laravel globl version
+
+# check laravel global version
 laravel --version
 
 # create project laravel
 laravel new PROJECT_NAME
 ```
 
-## Konfigure Input & Output Audio
+## Configure Input & Output Audio
 
 Jangan gunakan `pulseaudio` akan terjadi masalah, gunakan `pipewire` agar tidak terjadi masalah di audio input. Biar tidak ribet gunakan `pipewire`
 
 ```shell
 sudo pacman -S pipewire pipewire-pulse
 
-# kemudian copy code ini dan paste kedalam file .xinitrc sebelum exect dwm  
+
+# kemudian copy code ini dan paste ke dalam file .xinitrc sebelum exect dwm
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
 /usr/bin/pipewire-media-session &
@@ -815,7 +838,7 @@ pipewire-pulse &
 pipewire-media-session &
 ```
 
-Install package `pavucontrol` untuk emngontroll audio profile dengan GUI
+Install package `pavucontrol` untuk mengontrol audio profile dengan GUI
 
 ```shell
 sudo pacman -S pavucontrol
@@ -837,14 +860,14 @@ systemctl start bluetooth.service
 
 ## Manage Font
 
-[https://wiki.archlinux.org/title/fonts](https://wiki.archlinux.org/title/fonts) - Panduan menambahakna font yang lainnya
+[https://wiki.archlinux.org/title/fonts](https://wiki.archlinux.org/title/fonts) - Panduan menambahkan font yang lainnya
 
 ```shell
 # fix emoji
 sudo pacman -S noto-fonts-emoji
 
 # buat file baru
-sudo nvim /etc/fonts/local.conf 
+sudo nvim /etc/fonts/local.conf
 ```
 
 copy dan paste code ini kedalam local.conf save dan restart
@@ -853,34 +876,32 @@ copy dan paste code ini kedalam local.conf save dan restart
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
- <alias>
-   <family>sans-serif</family>
-   <prefer>
-     <family>Noto Sans</family>
-     <family>Noto Color Emoji</family>
-     <family>Noto Emoji</family>
-     <family>DejaVu Sans</family>
-   </prefer> 
- </alias>
-
- <alias>
-   <family>serif</family>
-   <prefer>
-     <family>Noto Serif</family>
-     <family>Noto Color Emoji</family>
-     <family>Noto Emoji</family>
-     <family>DejaVu Serif</family>
-   </prefer>
- </alias>
-
- <alias>
-  <family>monospace</family>
-  <prefer>
-    <family>Noto Mono</family>
-    <family>Noto Color Emoji</family>
-    <family>Noto Emoji</family>
-   </prefer>
- </alias>
+   <alias>
+      <family>sans-serif</family>
+      <prefer>
+         <family>Noto Sans</family>
+         <family>Noto Color Emoji</family>
+         <family>Noto Emoji</family>
+         <family>DejaVu Sans</family>
+      </prefer>
+   </alias>
+   <alias>
+      <family>serif</family>
+      <prefer>
+         <family>Noto Serif</family>
+         <family>Noto Color Emoji</family>
+         <family>Noto Emoji</family>
+         <family>DejaVu Serif</family>
+      </prefer>
+   </alias>
+   <alias>
+      <family>monospace</family>
+      <prefer>
+         <family>Noto Mono</family>
+         <family>Noto Color Emoji</family>
+         <family>Noto Emoji</family>
+      </prefer>
+   </alias>
 </fontconfig>
 ```
 
@@ -890,16 +911,16 @@ Lalu bagaimana cara mengatur default font interface install package ini
 sudo pacman -S lxappearcnce-gtk3
 ```
 
-Kemudian buka `lxappearcnce` untuk menagatur font pastikan kamu sudah menambahakan font di `.local/share/fonts/` ikuti laing di atas untuk menginstall font yang lainnya
+Kemudian buka `lxappearcnce` untuk mengatur font pastikan kamu sudah menambahkan font di `.local/share/fonts/` ikuti laing di atas untuk menginstall font yang lainnya
 
-## Set Walpaper
+## Set Wallpaper
 
 Baca selengkapnya [https://wiki.archlinux.org/title/feh](https://wiki.archlinux.org/title/feh)
 
 ```shell
 Sudo pacman -S feh
 
-# contoh mengatur walpaper click link di atas untuk detail
+# contoh mengatur wallpaper click link di atas untuk detail
 feh --bg-scale /path/to/image.file
 
 # tambahkan baris ini pada .xinitrc
@@ -908,32 +929,36 @@ feh --bg-scale /path/to/image.file
 
 ## Cara Screenshoot
 
-Sebenarnya banyak opsi yang bisa digunkan untuk mengambil tangkapan layar namu disini saya menggunakan `maim` dan sekaligus install package sxhkd untuk mengatur key binddings untuk melakukan screenshoot. Baca Selengkapnya [https://man.archlinux.org/man/maim.1.en](https://man.archlinux.org/man/maim.1.en) - untuk screenshoot opsi lainnya.
+Sebenarnya banyak opsi yang bisa digunakan untuk mengambil tangkapan layar namun disini saya menggunakan `maim` dan sekaligus install package sxhkd untuk mengatur key bindings untuk melakukan screenshot. Baca Selengkapnya [https://man.archlinux.org/man/maim.1.en](https://man.archlinux.org/man/maim.1.en) - untuk screenshot opsi lainnya.
 
 ```shell
 sudo pacman -S maim sxhkd
 
-# menggunakan maim, perintah ini digunakan untuk mengambil tangkapan layar dan akan di simpan di directory hoem dengan nama screenshoot.png
+
+# menggunakan maim, perintah ini digunakan untuk mengambil tangkapan layar dan akan disimpan di directory home dengan nama screenshot.png
 maim ~/screenshot.png
 
-# mengambil screenshoot dengan key binds
-# buat sebuah file 
+
+# mengambil screenshot dengan key binds
+# buat sebuah file
 sudo nvim .config/sxhkd/sxhkdrc
+
 
 # copy dan paste code ini pada file sxhkdrc, modifikasi sesuai kebutuhan
 super + shift + p
-    maim -s ~/pictures/screenshoot/$(date +%s).png
+maim -s ~/pictures/screenshoot/$(date +%s).png
+
 
 # -s adalah select jika tidak mau langsung saja tanpa -s click link di atas untuk opsi lainnya
-# save dan jalankan 
+# save dan jalankan
 sxhkd &
 # dan tambahkan sxhkd & pada file .xinitrc sebelum exac dwm
-# screenshoot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
+# screenshot dengan menggunakan key binds super + shift + p dan otomatis akan tersimpan di directory ~pictures/screenshot
 ```
 
 ## Install Neofetch
 
-[https://github.com/Chick2D/neofetch-themes](https://github.com/Chick2D/neofetch-themes) - Thme Neofetch
+[https://github.com/Chick2D/neofetch-themes](https://github.com/Chick2D/neofetch-themes) - Theme Neofetch
 
 ```shell
 sudo pacman -S neofetch
@@ -943,13 +968,33 @@ Run `neofetch` pada terminal dan foto kemudian upload di sosmed kamu dengan capt
 
 ## Setup Neovim
 
-[Tutorial Neovim](https://www.youtube.com/watch?v=vdn_pKJUda8&t=2363s) - Sangat rekomended implementasi sesuai kebutuhan saja.
+[Tutorial Neovim](https://www.youtube.com/watch?v=vdn_pKJUda8&t=2363s) - Sangat recomended implementasi sesuai kebutuhan saja.
 
-## Others
+## Others Package
 
-- Saran saya sering-saering baca wiki arch linux karena di sana sudah lengkap banget untuk dokumetasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
+- [htop](https://archlinux.org/packages/extra/x86_64/htop/) - Interactive process viewer
+- [man page](https://wiki.archlinux.org/title/man_page) - A utility for reading man pages
+- [wget](https://archlinux.org/packages/extra/x86_64/wget/) - Network utility to retrieve files from the Web
+- [graphviz](https://archlinux.org/packages/extra/x86_64/graphviz/) - Graph visualization software
+- [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) - For extracting and viewing files in .zip archives
+- [xorg-xrandr](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) - Primitive command line interface to RandR extension
+- [LSD (LSDeluxe)](https://github.com/lsd-rs/lsd) - Sanget cool untuk menampilkan icon pada terminal
+- [OBS-Studio](https://archlinux.org/packages/extra/x86_64/obs-studio/) - Free, open source software for live streaming and recording
+- [sxiv](https://archlinux.org/packages/extra/x86_64/sxiv/) - Simple X Image Viewer
+- [Figma Linux](https://aur.archlinux.org/packages/figma-linux) - The collaborative interface design tool. Unofficial Figma desktop client for Linux
+- [MPD](https://wiki.archlinux.org/title/Music_Player_Daemon) - Music Player Demon
+- [Spotify](https://wiki.archlinux.org/title/Spotify) - A proprietary music streaming service
+- [kdenlive](https://archlinux.org/packages/extra/x86_64/kdenlive/) - A non-linear video editor for Linux using the MLT video framework
+- [Cheese](https://archlinux.org/packages/extra/x86_64/cheese/) -  Take photos and videos with your webcam, with fun graphical effects
+- [Scrcpy](https://archlinux.org/packages/extra/x86_64/scrcpy/) - Display and control your Android device
+- [yt-dlp](https://archlinux.org/packages/extra/any/yt-dlp/) - A youtube-dl fork with additional features and fixes
+- [Plant UML](https://plantuml.com/starting) - Untuk membuat diaram dll. Saya sering menggunakan untuk graphic seperti use case dll dengan menggunakan extension `vs code` Sebelum mulai kemu perlu menginstall package `graphviz`
+
+## Tips & Tricks
+
+- Saran saya sering-sering baca wiki arch linux karena disana sudah lengkap banget untuk dokumentasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
 - Jangan takut untuk explore lebih dalam lagi tentang Arch Linux, tapi ingat hati-hati karena bisa beresiko fatal jika kebanyakan explore package, gunakan sesuai kebutuhan saja, jangan sampai memberatkan sistem kamu sendiri
-- Modifikasi key binddings kamu sesuai ke inginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
+- Modifikasi key bindings kamu sesuai keinginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
 
 ## Butuh Bantuan 😂
 
