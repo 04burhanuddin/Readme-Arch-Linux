@@ -4,6 +4,8 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
 **Warning**: Don't blindly use configurations on dwm, st, dmenu and dwmblocks, unless you know what they require. Use at your own risk!.
 
+![my arch linux](assets/screen.png)
+
 ## Table Of Contents
 
 - Install Arch Linux
