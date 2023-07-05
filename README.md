@@ -1,4 +1,4 @@
-# **README ARCH LINUX**
+# **ZERO TO HERO ARCH LINUX**
 
 Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
@@ -94,9 +94,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   - `Locale language` (skip tidak perlu di ubah en_US default)
   - `Locale encoding` (skip tidak perlu di ubah utf-8 default)
   - `Drive(s)` (Pemilihan lokasi instalasi) *Tab to select*
-  - `Disk layout` (**Note:instalasi full**) jadi pilih:
-                        - wipe all selected...
-                        - pilih ext4 untuk filesystem
+  - `Disk layout` (**Note:instalasi full**) jadi pilih: wipe all selected... pilih `ext4` untuk filesystem
   - `Bootloader` (skip saja)
   - `Swap` (skip default true)
   - `Hostname` (atur sesuai keinginan)
@@ -710,6 +708,35 @@ nvm install -lts
 nvm use VERSI_NODEJS
 nvm alias default VERSI_NODEJS
 ```
+
+## Install Golang
+
+[Official Doc](https://go.dev/doc/install) Bca lengkap di sini. dan silahkan download golang yang ada di sana.
+
+```shell
+# pindah ke directory lokasi go yang sudah di download
+cd downloads/
+sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+
+# tambahkan ke bash profile
+export PATH=$PATH:/usr/local/go/bin
+
+# cek version go yang di install
+ go version
+```
+
+## Inatall Python
+
+[Referensi here](https://wiki.archlinux.org/title/python)
+
+```shell
+sudo pacman -Sy python-pip
+
+# check version
+python -v
+```
+
+> Untuk install python versi lainnya silahkan gunakan AUR Helper untuk menginstall nya
 
 ## Install Java
 
