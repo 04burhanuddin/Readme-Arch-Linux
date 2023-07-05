@@ -95,8 +95,8 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   - `Locale encoding` (skip tidak perlu di ubah utf-8 default)
   - `Drive(s)` (Pemilihan lokasi instalasi) *Tab to select*
   - `Disk layout` (**Note:instalasi full**) jadi pilih:
-                  - wipe all selected...
-                  - pilih ext4 untuk filesystem
+                        - wipe all selected...
+                        - pilih ext4 untuk filesystem
   - `Bootloader` (skip saja)
   - `Swap` (skip default true)
   - `Hostname` (atur sesuai keinginan)
@@ -112,8 +112,9 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   - `Optional repository` (skip)
   - **Terakhir pilih install** and enter continue
   - Tunggu sampai selesai dan setelah itu `reboot` dan masuk kembali login dengan user yang telah dibuat.
-  - Test koneksi internet apakah masih terhubung dengan cara melakukan `ping google.com`
-  - Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
+  
+- Test koneksi internet apakah masih terhubung dengan cara melakukan `ping google.com`
+- Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
 
    ```shell
    # kamu bisa mempelajari dulu nmcli ini apa sih?
@@ -121,11 +122,14 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
    # mendapatkan list wifi
    nmcli dev wifi list
+
    # konek ke wifi
    sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
    # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
+   
    # melihat koneksi wifi
    nmcli connection show
+
    # uji coba dengan test ping ke google.com -c5
    ping google.com -c5
    ```
@@ -350,6 +354,8 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    Install Default
 
+   > Perlu di ingat kalo pake yang default tidak ada inclide patch jadi patch sendiri sesuai kebutuhna saja
+
    ```shell
    cd .local/src/
    git clone https://git.suckless.org/dwm
@@ -393,6 +399,8 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    Install Default
 
+   > Perlu di ingat kalo pake yang default tidak ada inclide patch jadi patch sendiri sesuai kebutuhna saja
+
    ```shell
    cd .local/src/
    git clone git clone https://git.suckless.org/st
@@ -431,6 +439,8 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 - [Dwmblocks](https://) - **Dwmblocks**
 
    Installation Dari Source Lain
+
+   > Jika kamu menggunakan dwm yang belum inclide patch `status2d` harap bagian `"^c#A89984^",` di hapus saja dan ganti jadi string kosong agar tidak terjadi error saat instalasi
 
    ```shell
    cd .local/src/
