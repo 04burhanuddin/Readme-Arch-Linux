@@ -451,7 +451,7 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    Pada intinya semua yang ditampilkan pada dwmblocks adalah script yang dibuat dan bisa di execute dengan cara menggunakan `chmod +x nama script` contohnya dapat kamu lihat di sini [Status Bar](https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar), kamu dapat mendownload semua `raw` dan kemudian kamu simpan kedalam directory `.local/bin` dan pastikan sudah bisa di execute caranya gunakan `chmod` +x di sini artinya hanya bisa di execute pada directory itu saja dan agar bisa di akses atau di execute di lokasi manapun tambahkan path pada bash profile seperti ini `export PATH="$HOME/.local/bin/:$PATH"` dan sekarang semua script dapata kamu execute diluar dari directory bin tadi. perhatikan pada file `config.h` pada dwmblock
 
-   **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx`
+   **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx` **Selamat anda sudah menggunakan Window manager DWM**
 
 ## Install ZSH
 
