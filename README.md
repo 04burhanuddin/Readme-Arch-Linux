@@ -74,13 +74,13 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   ```
 
 - Setelah itu uji coba koneksi melakukan test `ping`, misal `ping google.com`
-- Lakukan update dan install `archinstall`, `archlinux-keyring`
+- Lakukan update dan install package `archinstall`, `archlinux-keyring`
 
   ```shell
   pacman -Syu archinstall archlinux-keyring
   ```
 
-- Setelah semua update dan instalasi selesai tinggal install menggunakan perintah
+- Setelah semua update dan instalasi package selesai tinggal install menggunakan perintah
 
   ```shell
   archinstall
@@ -114,10 +114,10 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   - Tunggu sampai selesai dan setelah itu `reboot` dan masuk kembali login dengan user yang telah dibuat.
   
 - Test koneksi internet apakah masih terhubung dengan cara melakukan `ping google.com`
-- Jika tidak konek gunakan cara ini untuk konek ke `wifi` terlebih dahulu
+- Jika koneksi time out gunakan cara ini untuk konek ke jaringan `wifi` baca lengkap [https://wiki.archlinux.org/title/NetworkManager](https://wiki.archlinux.org/title/NetworkManager)
 
    ```shell
-   # kamu bisa mempelajari dulu nmcli ini apa sih?
+   # kamu bisa mempelajari dulu nmcli ini melalui link di atas
    nmcli
 
    # mendapatkan list wifi
@@ -127,10 +127,10 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
    sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
    # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
    
-   # melihat koneksi wifi
+   # melihat koneksi
    nmcli connection show
 
-   # uji coba dengan test ping ke google.com -c5
+   # cek koneksi internet
    ping google.com -c5
    ```
 
@@ -147,15 +147,15 @@ sudo pacman -S git
 Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih merekomendasikan untuk menggunakan `paru` selengkapnya baca dokumentasi, alasan mengapa menggunakan `paru` [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
 
 ```shell
-# bukan dari github tapi dari aur...
 git clone https://aur.archlinux.org/paru.git
 cd paru
+# menginstall install AUR Helper
 makepkg -si
 ```
 
 ## Cara Mount Smartphone
 
-> Untuk mount External HDD/Flashdisk saya rasa anda sudah paham.
+> Untuk mount External HDD/Flashdisk baca di sini [https://wiki.archlinux.org/title/USB_storage_devices](https://wiki.archlinux.org/title/USB_storage_devices)
 
 Mengapa `mount` smartphone, agar memudahkan mendapatkan token maupun SSH keys, kamu bisa membuat sebuah file .txt di `smartphone` untuk menyimpan `token` yang telah kamu buat di akun github kamu tinggal copy dari `smartphone` ke PC/Laptop kamu dengan cara mount, begitupun dengan kamu bisa copy file ssh keys yang telah dibuat ke dalam `smartphone` untuk memudahkan menempelkan ssh key pada akun github kamu.
 
@@ -178,12 +178,11 @@ simple-mtpfs --device 1 ~/phone
 ls phone
 # sekarang kamu bisa transfer file dari laptop ke hp atau dari hp ke laptop
 
-
 # untuk umount sebelum USB dicabut
 fusermount -u phone
 ```
 
-**Tips Copy ssh Github**
+**Tips Copy ssh Github** - Skip ini lanjut ke membuat ssh-key dan kembali untuk baca bila perlu
 
 Gunakan perintah ini untuk copy file ssh keys kamu ke `smartphone`
 
@@ -354,7 +353,7 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    Install Default
 
-   > Perlu di ingat kalo pake yang default tidak ada inclide patch jadi patch sendiri sesuai kebutuhna saja
+   > Perlu di ingat kalo pake yang default tidak ada include patch jadi patch sendiri sesuai kebutuhna saja
 
    ```shell
    cd .local/src/
@@ -363,19 +362,7 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
    sudo make clean install
    ```
 
-   > Surce yang saya gunakan [https://github.com/04burhanuddin/dwm.git](https://github.com/04burhanuddin/dwm.git)
-
-   Patch & Features (dwm v6.4)
-
-   1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Full Gaps
-   2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
-   3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
-   4. [https://dwm.suckless.org/patches/alwayscenter/](https://dwm.suckless.org/patches/alwayscenter/) - Always Center
-   5. [https://dwm.suckless.org/patches/hide_vacant_tags/](https://dwm.suckless.org/patches/hide_vacant_tags/) - Hide Vacant Tags
-   6. Dan kalo pake source dari saya ini sudah include function keyboard manage volume dan kecerahan layar dan sudah menggunakan versi terbaru `6.4` saat tutorial ini dibuat
-   7. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
-
-    Installation Dari Source Lain
+   Installation Dari Source saya
 
    ```shell
    cd .local/src/
@@ -384,14 +371,25 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
    sudo make clean install
    ```
 
-   Key Bindings/Shortcut keyboard
+   **Patch & Features (dwm v6.4)**
+
+   1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Full Gaps
+   2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
+   3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
+   4. [https://dwm.suckless.org/patches/alwayscenter/](https://dwm.suckless.org/patches/alwayscenter/) - Always Center
+   5. [https://dwm.suckless.org/patches/hide_vacant_tags/](https://dwm.suckless.org/patches/hide_vacant_tags/) - Hide Vacant Tags
+   6. Include function keyboard manage volume dan kecerahan layar
+   7. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
+
+   **Key Bindings/Shortcut keyboard.**
 
    1. `super + enter` -> Open terminal
    2. `super + q` -> Close Window
    3. `super + p` -> Open dmenu
    4. `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
    5. `super + shift + q` -> Exit dwm
-   6. lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+   6. `super + Click Kanan Mouse` -> resize window
+   7. Key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
 
 - [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
 
@@ -399,16 +397,16 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    Install Default
 
-   > Perlu di ingat kalo pake yang default tidak ada inclide patch jadi patch sendiri sesuai kebutuhna saja
+   > Perlu di ingat kalo pake yang default tidak ada include patch jadi patch sendiri sesuai kebutuhna saja
 
    ```shell
    cd .local/src/
    git clone git clone https://git.suckless.org/st
-   cd dwm
+   cd st
    sudo make clean install
    ```
 
-   Installation Dari Source Lain
+   Installation Dari Source Lain (from `Bugswriter`)
 
    ```shell
    cd .local/src/
@@ -423,7 +421,7 @@ Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untu
 
    1. `alt + c` -> copy character
    2. `alt + v` -> paste character
-   3. lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+   3. key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
 
 - [tools.suckless.org](https://tools.suckless.org/dmenu/) - **Dynamic Menu**
 
@@ -523,10 +521,13 @@ sudo pacman -S picom
 # buat directory config yang baru terlebih dahulu
 sudo mkdir .config/picom/picom.conf
 
+# copy file default configurasi
+cp /etc/xdg/picom.conf .config/picom/
+
 # buat link menuju ke config baru yang kita buat tadi
 picom --config .config/picom/picom.conf
 
-# kemudian modifikasi config sesuai kebutuhan, animasi, rounded corners dll.
+# kemudian modifikasi config sesuai kebutuhan shadow, rounded corners, transparansi dll.
 sudo nvim .config/picom/picom.conf
 ```
 
@@ -539,7 +540,7 @@ Sebenarnya tidak error cuman tidak berfungsi seperti touchpad normal biasanya, d
 sudo nvim /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
 
-copy code ini ke dalam file 30-touchpad.conf save dan restart.
+copy code ini ke dalam file 30-touchpad.conf save dan restart. `This Work For Me`
 
 ```xml
 Section "InputClass"
@@ -1033,7 +1034,7 @@ Run `neofetch` pada terminal dan foto kemudian upload di sosmed kamu dengan capt
 
 - Saran saya sering-sering baca wiki arch linux karena disana sudah lengkap banget untuk dokumentasi dari setiap package-package yang tersedia pada package arch maupun AUR Package.
 - Jangan takut untuk explore lebih dalam lagi tentang Arch Linux, tapi ingat hati-hati karena bisa beresiko fatal jika kebanyakan explore package, gunakan sesuai kebutuhan saja, jangan sampai memberatkan sistem kamu sendiri
-- Modifikasi key bindings kamu sesuai keinginan kamu di setiap file `config.h` pada **dem**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar.
+- Modifikasi key bindings kamu sesuai keinginan kamu di setiap file `config.h` pada **dwm**, **dmenu**, **st** dan jika kamu mau melakukan patch, saran patch sesuai kebutuhan saja dan pastikan kamu sudah membackup file utama sebelum di otak-atik dan cari tutorial cara patch yang baik dan benar. [cara patch](https://suckless.org/hacking/)
 
 ## Butuh Bantuan 😂
 
