@@ -785,7 +785,7 @@ paru -S visual-studio-code-bin
 Install VS Code tanpa AUR Helper
 
 ```shell
-git clone https://aur.archlinux.org/android-studio.git
+git clone  https://aur.archlinux.org/visual-studio-code-bin.git
 cd android-studio
 makepkg -si
 ```
