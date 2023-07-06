@@ -675,6 +675,9 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff0319065
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
+# agar composer bisa di akses di directory manapun
+sudo mv composer.phar /usr/local/bin/composer
+
 # cek instalasi
 composer --version
 ```
@@ -786,7 +789,7 @@ Install VS Code tanpa AUR Helper
 
 ```shell
 git clone  https://aur.archlinux.org/visual-studio-code-bin.git
-cd android-studio
+cd visual-studio-code-bin
 makepkg -si
 ```
 
