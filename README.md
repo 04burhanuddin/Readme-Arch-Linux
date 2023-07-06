@@ -23,6 +23,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Install Firewall
 - Install Apache
 - Install Mysql
+- Manage Database
 - Install PHP
 - Install Composer
 - Laravel Global Installer
@@ -652,6 +653,17 @@ MariaDB [mysql]> FLUSH PRIVILEGES;
 MariaDB [mysql]> SELECT user, host FROM mysql.user;
 MariaDB [mysql]>quit;
 ```
+
+## Manage Databse
+
+Ada beberapa opsi untuk kamu jika ingin mengelola database yaitu bisa menggunakan :
+
+- [Table Plus](https://aur.archlinux.org/packages/tableplus) - Easy, modern, native and friendly GUI (Rekomended)
+- [Beekeeper-Studio](https://aur.archlinux.org/packages/beekeeper-studio-bin) - Modern and easy to use
+- Phpmyadmin (Sangat Tidak Rekomended, biar paham query)
+- Menggunakan Plugin VS Code (Rekomended)
+- Menggunakan Terminal Langsung (Sangat Rekomended)
+- dll
 
 ## Install PHP
 
