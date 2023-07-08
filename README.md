@@ -311,6 +311,9 @@ sudo pacman -S libxft libxinerama
 
 # kemudian copy
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
+
+# edit file .xinitrc
+nvim .xinitrc
 ```
 
 kemudian modifikasi file `.xinitrc` seperti dibawah ini
@@ -344,115 +347,151 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-dwmblocks &
 exec dwm
 ```
 
-Disini kemu bisa menggunakan source saya maupun source dari orang lain tapi untuk belajar kedepannya tidak apa-apa untuk sementara saja, biar kedepannya kamu bisa mempelajari sendiri dan melakukan patch sesuai kebutuhan. dan ingat jangan harap kamu menemukan `Button Close`, `Button Minimize` dan `Button Maximize` di DWM ini dikarenakan full menggunakan **Key Bindings** kamu dapat mengatur key binds kamu di masing-masing file `config.h/config.def.h` perlu di ingat jika kamu mengubahnya di file `config.def.h` maka `config.h` harus di delete terlebih dahulu dan akan otomatis terbentuk saat install menggunakan `sudo make clean install` dan setiap perubahan harus diterapkan dengan cara ini yaitu dengan cara menginstall. selengkapanya baca-baca pada website resminya `suckless.org` atau liat tutorial di `youtube`
+Next install **window manager**, **st** dan **dmenu**. **dwmblocks** belakangan install ketika suda berhasil masuk ke window manager
 
 - [dwm.suckless.org](https://dwm.suckless.org/) - **Dynamic Window Manager**
-
-   Install Default
-
-   > Perlu di ingat kalo pake yang default tidak ada include patch jadi patch sendiri sesuai kebutuhna saja
-
-   ```shell
-   cd .local/src/
-   git clone https://git.suckless.org/dwm
-   cd dwm
-   sudo make clean install
-   ```
-
-   Installation Dari Source saya
-
-   ```shell
-   cd .local/src/
-   git clone https://github.com/04burhanuddin/dwm.git
-   cd dwm
-   sudo make clean install
-   ```
-
-   **Patch & Features (dwm v6.4)**
-
-   1. [https://dwm.suckless.org/patches/fullgaps/](https://dwm.suckless.org/patches/fullgaps/) - Full Gaps
-   2. [https://dwm.suckless.org/patches/status2d/](https://dwm.suckless.org/patches/status2d/) - Status2d
-   3. [https://dwm.suckless.org/patches/xrdb/](https://dwm.suckless.org/patches/xrdb/) - xrdb
-   4. [https://dwm.suckless.org/patches/alwayscenter/](https://dwm.suckless.org/patches/alwayscenter/) - Always Center
-   5. [https://dwm.suckless.org/patches/hide_vacant_tags/](https://dwm.suckless.org/patches/hide_vacant_tags/) - Hide Vacant Tags
-   6. Include function keyboard manage volume dan kecerahan layar
-   7. dan kamu dapat menambahkan patch sendiri sesuai kebutuhan
-
-   **Key Bindings/Shortcut keyboard.**
-
-   1. `super + enter` -> Open terminal
-   2. `super + q` -> Close Window
-   3. `super + p` -> Open dmenu
-   4. `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
-   5. `super + shift + q` -> Exit dwm
-   6. `super + Click Kanan Mouse` -> resize window
-   7. Key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
-
-- [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
-
-   Simple Terminal (ST) dari `Bugswriter` menurut saya ini sangat bagus namun ada kekurangan yaitu belum support `glyph wide support` dimana kondisi ni untuk menampilkan icon, tampil hanya sebagian saja bagian kiri tampil sempurna dan kanan akan terpotong, jadi caranya tinggal kamu tambahkan patch baru dari [download di sini](https://st.suckless.org/patches/glyph_wide_support/) -> Pilih yang `using boxdraw` tinggal di patch dan benar yang error selesai, hal ini saya alami ketika menggunakan `nvim-tree` untuk menampilkan icon file/directory dan bisa teratasi dengan menerapkan `glphy wide support` pilih khusu yang boxdraw. Dan pastikan sebelum patch sudah paham patch sebenarnya buat apa dll..
-
-   Install Default
-
-   > Perlu di ingat kalo pake yang default tidak ada include patch jadi patch sendiri sesuai kebutuhna saja
-
-   ```shell
-   cd .local/src/
-   git clone git clone https://git.suckless.org/st
-   cd st
-   sudo make clean install
-   ```
-
-   Installation Dari Source Lain (from `Bugswriter`)
-
-   ```shell
-   cd .local/src/
-
-   # silahkan kunjungi profile github nya.
-   git clone https://github.com/Bugswriter/st.git
-   cd st
-   sudo make clean install
-   ```
-
-   Key Bindings/Shortcut keyboard
-
-   1. `alt + c` -> copy character
-   2. `alt + v` -> paste character
-   3. key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
-
-- [tools.suckless.org](https://tools.suckless.org/dmenu/) - **Dynamic Menu**
 
    Installation
 
    ```shell
    cd .local/src/
-   git clone git clone https://git.suckless.org/dmenu
+   git clone https://github.com/04burhanuddin/dwm.git
+   # buka file README.md dan bacalah
+   cd dwm
+   sudo make clean install
+   ```
+
+   Default Key Bindings
+
+   - `super + enter` -> Open terminal
+   - `super + q` -> Close Window
+   - `super + p` -> Open dmenu
+   - `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
+   - `super + shift + q` -> Exit dwm
+   - `super + Click Kanan Mouse` -> resize window
+   - Key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+
+- [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
+
+   Installation
+
+   ```shell
+   cd .local/src/
+   git clone https://github.com/04burhanuddin/st.git
+   # buka file README.md dan bacalah
+   cd st
+   sudo make clean install
+   ```
+
+   Default Key Bindings
+
+   - `ctrl + shift + c` -> copy character
+   - `ctrl + shift + v` -> paste character
+   - key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+
+- [tools.suckless.org](https://tools.suckless.org/dmenu/) - **Dynamic Menu**
+  
+  Installation
+
+   ```shell
+   cd .local/src/
+   git clone https://github.com/04burhanuddin/dmenu.git
+   # buka file README.md dan bacalah
    cd dmenu
    sudo make clean install
    ```
 
+   Default Key Binding
+
+   - `super + p` -> open dmenu
+
 - [Dwmblocks](https://) - **Dwmblocks**
 
-   Installation Dari Source Lain
+   > Saran **inatall** ini pas window manager sudah berjalan saja, lanjut ke point install font
 
-   > Jika kamu menggunakan dwm yang belum inclide patch `status2d` harap bagian `"^c#A89984^",` di hapus saja dan ganti jadi string kosong agar tidak terjadi error saat instalasi
+   Installation
 
    ```shell
    cd .local/src/
-   git clone git clone https://github.com/Bugswriter/dwmblocks.git
+   git clone https://github.com/04burhanuddin/dwmblocks.git
+   # buka file README.md dan bacalah
    cd dwmblocks
+   # sebelum di install baca di bawah dulu panduan cara menampilkan statusbar
    sudo make clean install
    ```
 
-   Cara menampilkan informasi pada dwmblocks
+   Cara menampilkan informasi pada **dwmblocks**
 
-   Pada intinya semua yang ditampilkan pada dwmblocks adalah script yang dibuat dan bisa di execute dengan cara menggunakan `chmod +x nama script` contohnya dapat kamu lihat di sini [Status Bar](https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar), kamu dapat mendownload semua `raw` dan kemudian kamu simpan kedalam directory `.local/bin` dan pastikan sudah bisa di execute caranya gunakan `chmod` +x di sini artinya hanya bisa di execute pada directory itu saja dan agar bisa di akses atau di execute di lokasi manapun tambahkan path pada bash profile seperti ini `export PATH="$HOME/.local/bin/:$PATH"` dan sekarang semua script dapata kamu execute diluar dari directory bin tadi. perhatikan pada file `config.h` pada dwmblock
+   open file `config.h`
 
-   **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx` **Selamat anda sudah menggunakan Window manager DWM**
+   ```c
+   static const Block blocks[] = {
+      /*Icon/colors*/  /*Command*/  /*Update Interval*/ /*Update Signal*/
+      {"^c#A89984^", "nettraf", 1, 16},
+      {"^c#458588^", "clock", 5, 0},
+      {"^c#B16286^", "battery", 5, 3},
+      {"^c#FE8019^", "internet", 5 ,4},
+      };
+   
+   static char delim[] = "  ";
+   static unsigned int delimLen = 6;
+   ```
+
+   > Perhatikan code di atas terdiri dari 4 bagian ada color, *colors* ini works apabila menggunakan **dwm** yang support dengan **status2d** apabila kamu menggunakan **dwm** yang belum support harap di hapus agar tidak terjadi error saat penginstalan. *commend* cara membuat ada di bawah
+
+   Cara download script shell
+
+   ```shell
+   cd .local/bin
+
+   # download script disini https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar
+   
+   # contoh download pastikan click raw copy url dan download menggunakan wget
+   wget https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.local/bin/statusbar/sb-battery
+
+   # kemudian ubahlah agar script ini menjadi excutable
+   # ganti nama menjadi. bisa di ganti bisa tidak bebas saja
+   mv sb-battery battery
+
+ 
+   chmod +x battery
+
+   # run menggunakan
+   ./battery
+
+   # silahkan download script yg lainnya sesuai kebutuhan
+
+   # script ini hanya bisa di execute pada direktory ini saja dan agar bisa di
+   # execute dimanapun tambahkan path pada bash profile
+   export PATH="$HOME/.local/bin/:$PATH"
+
+   # harusnya setelah path di tambahkan kamu dapat run semua script yang ada pada directory
+   # .local/bin/ diluar dari direktori itu sendiri dan script ini yang digunakan untuk 
+   # menampilkan status bar maka dari itu pastikan command bisa di akses di direktory manapun.
+
+   # setiap perubahan apapun yang dibuat gunakan sudo make clean install
+   # dan untuk mendapatkan perubahan terbaru kill dwmblocks
+   pkill dwmblocks
+
+   # start dwmblocks
+   dwmblocks &
+
+   # agar dwmblocks berjalan setiap kali nyalain laptop/pc
+   # edit file .xinitrc pada directory ~/ 
+   nvim ~/.xinitrc
+
+   # tambahkan script ini sebelum exec dwm seperi di bawah
+   dwmblocks &
+   exec dwm
+   ```
+
+   > fyi ini script support dengan click untuk tambahan kamu bisa patch dwm kamu di <https://dwm.suckless.org/patches/statuscmd/> agar support click, baca lengkap agar tidak error
+
+
+- **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx` pada terminal **tty1** dan **Selamat anda sudah menggunakan Window manager DWM**
 
 ## Install ZSH
 
