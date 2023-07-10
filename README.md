@@ -127,7 +127,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
    > Note: jika ssid nya menggunakan spasi gunakan tanda "SSID" atau pisah menggunakan \
 
-Setelah itu lanjut ke bawah untuk install **window manager**.
+Setelah itu lanjut ke bawah untuk install **window manager**
 
 ## Install Git
 
@@ -194,7 +194,7 @@ cp .ssh/dev.pub phone/ssh.txt
 
 ## Menggunakan Github-CLI
 
-[Docs Github CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli), silahkan klik link untuk mempelajari `Github CLI` saya sendiri lebih suka menggunakan `SSH Key`
+Baca lengkap [Docs Github CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli), silahkan klik link untuk mempelajari `Github CLI` saya sendiri lebih suka menggunakan `SSH Key`
 
 Jika belum memiliki token buat di pengaturan akun github settings -> developer settings -> personal access token -> token classic, silahkan atur `expired` dan `permission` penggunaan token
 
@@ -208,7 +208,7 @@ gh auth login
 
 ## Menggunakan SSH Keys Github
 
-[Docs SSH Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+Baca lengkap [Docs SSH Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 **Membuat SSH Key untuk Github**
 
@@ -241,9 +241,24 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
+Buat sebuah file **config** agar ssh tetap dapat digunakan ketika device di reboot
+
+```shell
+nvim ~/.ssh/config
+```
+
+copy dan paste ke dalam file **config**
+
+```shell
+# github.com server
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/ID_RSA
+```
+
 ```shell
 cat ~/.ssh/ID_RSA_KAMU.pub
-# copy semua dan paste ke akun github kamu SSH Key
+# copy semua dan paste ke akun github kamu
 
 # start ssh-agent
 eval "$(ssh-agent -s)"
@@ -258,27 +273,11 @@ ssh -T git@github.com
 Hi ....! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-> Setelah komputer/laptop reboot, SSH key tidak bisa digunakan harus ditambahkan lagi baru bisa.
-
-Nah biar ga ribet `ss-add ...` buat file baru dengan nama `config`
-
-```shell
-nvim ~/.ssh/config
-```
-
-copy dan paste ke dalam file `config`
-
-```shell
-# Github.com server
-Host github.com
-IdentityFile ~/.ssh/ID_RSA
-```
-
-> Kamu bisa membuktikannya dengan cara reboot tanpa file `config` setelah itu ketikkan `ssh -T git@github.com` dan ketika menggunakan file `config`
-
 ## Install Editor
 
-Setelah penginstalan Arch Linux tidak ada editor bawaan, Saya sangat suka menggunakan `neovim`, gunakan text editor yang kamu pahami dan familiar buat kamu
+> install editor untuk konfigurasi berikutnya
+
+Install text editor yang kmau pahami dan familiar buat kamu. Saya lebih suka menggunakan **neovim**
 
 ```shell
 # install semua sesuai kebutuhan saja
@@ -288,32 +287,18 @@ sudo pacman -S vim
 sudo pacman -S nano
 ```
 
-> install editor untuk konfigurasi langkah berikutnya
-
 ## Install Window Manager
 
-Sebelum mendownload semua resource pastikan sudah membuat directory untuk menampung semua resources ini dengan menggunakan perintah berikut ini
-
-```shell
-mkdir -p .local/src
-
-# jadi isi dari directory src ini adalah ada dwm, st, dmenu dan dwmblocks
-# ikuti langkah di bawah untuk menginstall
-```
-
-Sebelum melakukan instalasi di bawah agar tidak terjadi error terlebih dahulu install package ini dan lakukan konfigurasi berikut ini
+Perlu di ingat pas instalasi di atas kita memilih **xorg** sebagai display serve untuk sistem X Window System (X11), dan disini full menggunakan tools dari [suckles.org](https://suckless.org/). maka dari itu kita perlu menginstall package **libxft** dan **libxinerama**
 
 ``` shell
 sudo pacman -S libxft libxinerama
 
 # kemudian copy
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
-
-# edit file .xinitrc
-nvim .xinitrc
 ```
 
-kemudian modifikasi file `.xinitrc` seperti dibawah ini
+kemudian modifikasi file `.xinitrc` seperti dibawah ini, silahkan gunakan text editor yang kamu install sebelumnya. karena saya menggunakan **neovim** maka perintahnya `nvim .xinitrc` jika menggunakan **nano** `nano .xinitrc`
 
 ```shell
 #!/bin/sh
@@ -347,31 +332,47 @@ fi
 exec dwm
 ```
 
-Next install **window manager**, **st** dan **dmenu**. **dwmblocks** belakangan install ketika suda berhasil masuk ke window manager
+Sebelum mendownload semua resource pastikan sudah membuat directory untuk menampung semua resources, dengan menggunakan perintah berikut ini
+
+```shell
+mkdir -p .local/src
+```
+
+> jadi isi dari directory src ini nantinya adalah ada **dwm**, **st**, **dmenu** dan **dwmblocks** dll silahkan buka website [suckles.org](https://suckless.org/) untuk mencari tau semua ini.
+
+Next install **window manager**, **st** dan **dmenu**. Saran untuk **dwmblocks** install belakangan ketika suda berhasil masuk ke window manager.
 
 - [dwm.suckless.org](https://dwm.suckless.org/) - **Dynamic Window Manager**
-
-   Installation
+  
+   Original Installation
+  > jika kamu clone dari repository mereka kamu bakal dapat dwm yang belum di patch, artinya dwm original default bawaan dan kamu bakal patch sendiri. seperti function tombol keyboard perlu di tambahkan manul agar berfungsi dll. begitupun dengan yang lainnya **dmenu** dan **st**
 
    ```shell
    cd .local/src/
-   git clone https://github.com/04burhanuddin/dwm.git
-   # buka file README.md dan bacalah
+   git clone https://git.suckless.org/dwm
    cd dwm
    sudo make clean install
    ```
 
-   Default Key Bindings
+   Menggunakan source dari saya sudah include beberapa patch buka file **README** setelah clone repository dan baca patch apa saja yang sudah include.
 
-   - `super + enter` -> Open terminal
-   - `super + q` -> Close Window
-   - `super + p` -> Open dmenu
-   - `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
-   - `super + shift + q` -> Exit dwm
-   - `super + Click Kanan Mouse` -> resize window
-   - Key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+   ```shell
+   cd .local/src/
+   git clone https://github.com/04burhanuddin/dwm.git
+   cd dwm
+   sudo make clean install
+   ```
 
-- [st.suckless.org](https://st.suckless.org/) - **Simple Terminal**
+   Key Bindings
+  - `super + enter` -> Open terminal
+  - `super + q` -> Close Window
+  - `super + p` -> Open dmenu
+  - `super + 2` -> Switch Tab `1, 2, 3, 4 dst`
+  - `super + shift + q` -> Exit dwm
+  - `super + Click Kanan Mouse` -> resize window
+  - Key binds lainnya ada di file `config.h` dan atur sendiri sesuai kebutuhan
+
+- [st.suckless.org](https://st.suckless.org/) - **ST (Simple Terminal)**
 
    Installation
 
@@ -486,7 +487,6 @@ Next install **window manager**, **st** dan **dmenu**. **dwmblocks** belakangan 
    ```
 
    > fyi ini script support dengan click untuk tambahan kamu bisa patch dwm kamu di <https://dwm.suckless.org/patches/statuscmd/> agar support click, baca lengkap agar tidak error
-
 
 - **Next Terakhir** Install font terlebih dahulu `sudo pacman -S ttf-jetbrains-mono` agar bisa di jalankan, setelah itu jalankan perintah `startx` pada terminal **tty1** dan **Selamat anda sudah menggunakan Window manager DWM**
 
