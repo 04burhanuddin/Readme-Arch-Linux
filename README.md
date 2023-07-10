@@ -45,11 +45,11 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 
 ## **Install Arch Linux**
 
-> **Gunakan VirtualBox Untuk experiment, jika masih ragu untuk menggunakan Arch Linux**
+> **Silahkan gunakan VirtualBox Untuk experiment, jika masih ragu untuk menggunakan Arch Linux**
 
-- [Download Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
+- [ISO Arch Linux](https://geo.mirror.pkgbuild.com/iso/2023.06.01/) - Download iso file
 - [Balena Eatcher](https://etcher.balena.io/) - Creating bootable
-- Sebelum lanjut instalasi pastikan kamu memiliki koneksi internet yang cukup stabil. **wajib konek ke internet**
+- Sebelum lanjut instalasi pastikan kamu memiliki koneksi internet. **wajib konek ke internet**
 
 **PANDUAN INSTALASI:**
 
@@ -58,24 +58,21 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
 - Setelah masuk ke tty1 silahkan konek ke `wifi` dengan cara berikut ini:
 
   ```shell
-  # ketikkan perintah ini pada terminal tty1 dan nanti masuk ke mode iwctl
-  iwctl
-
   # untuk mendapatkan device list contoh wlan0
-  device list
+  iwctl device list
 
   # menampilkan semua list wifi yang tersedia
-  station wlan0 get-networks
-  # konek ke wifi
-  station wlan0 connect ENTER_SSID
-  # atau
-  iwctl --passphrase=PASSPHRASE station wlan0 connect SSID
+  iwctl station wlan0 get-networks
 
-  # exit iwctl CTRL + D / ketik exit
+  # konek ke wifi
+  iwctl station wlan0 connect SSID_NAME
+  
+  # atau
+  iwctl --passphrase=PASSWORD station wlan0 connect SSID_NAME
   ```
 
-- Setelah itu uji coba koneksi melakukan test `ping`, misal `ping google.com`
-- Lakukan update dan install package `archinstall`, `archlinux-keyring`
+- Setelah itu uji coba koneksi melakukan test `ping`, misal `ping google.com` harusnya ping replay.
+- Lakukan update dan install package `archinstall`dan `archlinux-keyring`
 
   ```shell
   pacman -Syu archinstall archlinux-keyring
@@ -87,7 +84,7 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   archinstall
   ```
 
-   > Tunggu sampai masuk ke menu instalasi
+   > Tunggu sampai masuk ke menu instalasi, ini kebiasaan saya tidak pernah melakukan pembagian partisi seperti untuk `swap` dll, saya hanya membiarkan saja default dan nanti akan terbentuk sendiri.
 
    **Konfigurasi Instalasi:**
 
@@ -114,43 +111,43 @@ Copyright © 2023 [04burhanuddin](https://github.com/04burhanuddin)
   - **Terakhir pilih install** and enter continue
   - Tunggu sampai selesai dan setelah itu `reboot` dan masuk kembali login dengan user yang telah dibuat.
   
-- Test koneksi internet apakah masih terhubung dengan cara melakukan `ping google.com`
-- Jika koneksi time out gunakan cara ini untuk konek ke jaringan `wifi` baca lengkap [https://wiki.archlinux.org/title/NetworkManager](https://wiki.archlinux.org/title/NetworkManager)
+- Test koneksi internet kamu dengan cara `ping google.com -c5`
+- Jika koneksi `time out` gunakan cara ini untuk konek ke `wifi` doc referensi [https://wiki.archlinux.org/title/NetworkManager](https://wiki.archlinux.org/title/NetworkManager)
 
    ```shell
-   # kamu bisa mempelajari dulu nmcli ini melalui link di atas
-   nmcli
-
-   # mendapatkan list wifi
+   # mendapatkan list wifi yang tersedia
    nmcli dev wifi list
 
    # konek ke wifi
-   sudo nmcli dev wifi connect NETWORK_SSID password "NETWORK_PASSWORD"
-   # Note: jika ssid nya menggunakan spasi gunakan tanda "NETWORK_SSID" atau SSID\ ...
+   sudo nmcli dev wifi connect SSID password "PASSWORD"
    
-   # melihat koneksi
+   # melihat koneksi wifi
    nmcli connection show
-
-   # cek koneksi internet
-   ping google.com -c5
    ```
 
+   > Note: jika ssid nya menggunakan spasi gunakan tanda "SSID" atau pisah menggunakan \
+
+Setelah itu lanjut ke bawah untuk install **window manager**.
+
 ## Install Git
+
+Install git untuk clone source yang nantinya akan kita gunakan
 
 ```shell
 sudo pacman -S git
 ```
 
-> **Note:** Berhasil install git tapi belum tentu bisa bebas clone repository yang ada di github dikarenakan membutuhkan authentication `git credential` untuk itu ikuti langkah di bawah **Menggunakan SSH** atau **Menggunakan Github-CLI**
+> **Note:** Berhasil install git, tapi belum tentu bisa bebas clone repository yang ada di github dikarenakan membutuhkan authentication **git credential** untuk itu ikuti langkah di bawah **Menggunakan SSH** atau **Menggunakan Github-CLI**
 
 ## AUR Helper
 
-Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih merekomendasikan untuk menggunakan `paru` selengkapnya baca dokumentasi, alasan mengapa menggunakan `paru` [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
+Sebenarnya ada beberapa AUR Helper yang dapat digunakan tapi saya lebih merekomendasikan untuk menggunakan **paru** selengkapnya baca doc referensi [https://wiki.archlinux.org/title/AUR_helpers](https://wiki.archlinux.org/title/AUR_helpers)
 
 ```shell
 git clone https://aur.archlinux.org/paru.git
 cd paru
-# menginstall install AUR Helper
+
+# install menggunakan perintah ini
 makepkg -si
 ```
 
@@ -525,6 +522,9 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZS
 # cari bagian plugins=(git)
 # copy dan paste code dibawah ini kedalam plugins menjadi seperti ini
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
+# restart the zsh session
+exec zsh
 ```
 
 Baca juga [https://github.com/romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k)
